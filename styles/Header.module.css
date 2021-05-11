@@ -1,0 +1,30 @@
+.container {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid #eaeaea;
+}
+
+.container ul {
+  width: 50%;
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.container li {
+  flex: 0 1 auto;
+  list-style-type: none;
+  border-bottom: 3px solid transparent;
+}
+
+.container li.active,
+.container li:hover {
+  border-bottom: 3px solid #ff0000;
+}
+
+.logoContainer {
+  width: 200px;
+}
