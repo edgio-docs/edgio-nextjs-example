@@ -15,4 +15,4 @@ jobs:
       - run: npm ci
       - run: npm run deploy -- --token=$LAYER0_DEPLOY_TOKEN
         env:
-          LAYER0_DEPLOY_TOKEN: ${{secrets.XDN_DEPLOY_TOKEN}}
+          LAYER0_DEPLOY_TOKEN: ${{secrets.LAYER0_DEPLOY_TOKEN}}
