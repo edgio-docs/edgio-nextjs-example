@@ -1,14 +1,15 @@
+const { fontFamily } = require('tailwindcss/defaultTheme')
+
 module.exports = {
-  future: {
-    // removeDeprecatedGapUtilities: true,
-    // purgeLayersByDefault: true,
-  },
-  purge: [],
+  mode: 'jit',
+  purge: ['./pages/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}'],
+  darkMode: 'class',
   theme: {
-    extend: {},
-    container: () => ({
-      center: true,
-    }),
+    extend: {
+      fontFamily: {
+        display: ['Inter', ...fontFamily.sans],
+      },
+    },
   },
   variants: {},
   plugins: [],
