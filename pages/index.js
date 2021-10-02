@@ -1,20 +1,22 @@
-import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import SEO from '@/components/SEO'
 
-export default function Home() {
+const Home = () => {
+  const meta = {
+    title: 'Layer0 Nextjs Example',
+    description:
+      'This open source project demonstrates Prefetching, and Image Optimization with Layer0 using Nextjs.',
+    url: 'https://layer0-docs-layer0-next-example-default.layer0.link',
+  }
   return (
-    <div className={styles.container}>
-      <Head>
-        <title>Layer0 Next App Example</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
-      <main className={styles.main}>
-        <p className={styles.description}>
-          This is an example Next.js app powered by Layer0. Click a category above to get
-          started.
+    <>
+      <SEO meta={meta} />
+      <div className="flex flex-col justify-center items-center w-full min-h-[75vh]">
+        <p className="text-center">
+          This is an example Next.js app powered by Layer0. Click a category above to get started.
         </p>
-      </main>
-    </div>
+      </div>
+    </>
   )
 }
+
+export default Home
