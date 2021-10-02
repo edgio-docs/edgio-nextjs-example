@@ -1,10 +1,13 @@
 # Deploy Next.js example to Layer0
+
 A demo deployment of Next.js app to Layer0.
 
 ## Demo
+
 https://layer0-docs-layer0-next-example-default.layer0.link/
 
 ## Try It Now
+
 [![Deploy with Layer0](https://docs.layer0.co/button.svg)](https://app.layer0.co/deploy?repo=https://github.com/layer0-docs/layer0-nextjs-example)
 
 ## Getting Started
