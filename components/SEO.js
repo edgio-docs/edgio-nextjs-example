@@ -9,11 +9,11 @@ const SEO = ({ meta }) => {
       <meta name="og:url" property="og:url" content={meta['url']} />
       <meta name="og:title" property="og:title" content={meta['title']} />
       <meta name="og:description" property="og:description" content={meta['description']} />
-      <meta name="og:image" property="og:image" content={`${meta['url']}/og-image.png`} />
+      <meta name="og:image" property="og:image" content={`${meta['image']}`} />
       <meta name="twitter:site" content="@Layer0Deploy" />
       <meta name="twitter:title" content={meta['title']} />
       <meta name="twitter:description" content={meta['description']} />
-      <meta name="twitter:image" content={`${meta['url']}/og-image.png`} />
+      <meta name="twitter:image" content={`${meta['image']}`} />
     </Head>
   )
 }

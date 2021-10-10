@@ -3,9 +3,9 @@ import SEO from '@/components/SEO'
 const Home = () => {
   const meta = {
     title: 'Layer0 Nextjs Example',
-    description:
-      'This open source project demonstrates Prefetching, and Image Optimization with Layer0 using Nextjs.',
+    description: 'This open source project demonstrates Prefetching, and Image Optimization with Layer0 using Nextjs.',
     url: 'https://layer0-docs-layer0-next-example-default.layer0.link',
+    image: 'https://layer0-docs-og-image-default.layer0.link/api?title=Layer0 Nextjs Example&width=1400&height=720'
   }
   return (
     <>

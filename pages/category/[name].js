@@ -7,6 +7,7 @@ export default function ProductListingPage({ products, slug }) {
     title: slug,
     description: slug,
     url: `https://layer0-docs-layer0-next-example-default.layer0.link/category/${slug}`,
+    image: `https://layer0-docs-og-image-default.layer0.link/api?title=${slug}&width=1400&height=720`
   }
   return (
     <>
