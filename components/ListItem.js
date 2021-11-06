@@ -9,7 +9,7 @@ const ListItem = ({ product, prefetchProps }) => {
         <a>
           <div className="relative flex flex-col items-center">
             <div
-              className="pb-2/3 bg-contain bg-center bg-no-repeat h-48"
+              className="pb-2/3 bg-contain bg-center bg-no-repeat h-48 w-48"
               style={{ backgroundImage: `url(${product.picture})` }}
             ></div>
             <p className="text-center lowercase font-bold">{product.name}</p>
