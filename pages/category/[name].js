@@ -22,7 +22,7 @@ export default function ProductListingPage({ products, slug }) {
                 product.href.split('/').reverse()[0]
               }`
             }
-            return <ListItem product={product} prefetchProps={prefetchProps} />
+            return <ListItem key={product['_id']} product={product} prefetchProps={prefetchProps} />
           })}
         </div>
       </div>
