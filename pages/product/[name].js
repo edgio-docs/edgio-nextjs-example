@@ -1,6 +1,6 @@
-import { getProductById } from '@/lib/cms'
+import SEO from '@/components/Seo'
 import Rating from '@/components/Rating'
-import SEO from '@/components/SEO'
+import { getProductById } from '@/lib/cms'
 
 export default function ProductPage({ product, slug }) {
   const meta = {

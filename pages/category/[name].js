@@ -1,5 +1,5 @@
+import SEO from '@/components/Seo'
 import { getCategory } from '@/lib/cms'
-import SEO from '@/components/SEO'
 import ListItem from '@/components/listItem'
 
 export default function ProductListingPage({ products, slug }) {

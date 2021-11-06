@@ -1,4 +1,4 @@
-import SEO from '@/components/SEO'
+import SEO from '@/components/Seo'
 
 const Home = () => {
   const meta = {
