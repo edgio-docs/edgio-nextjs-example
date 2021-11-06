@@ -12,11 +12,11 @@ export default function ProductPage({ product, slug }) {
   return (
     <>
       <SEO meta={meta} />
-      <div className="container center flex flex-row">
-        <div className="container px-4">
+      <div className="container center flex flex-col items-center md:flex-row pb-20">
+        <div className="container p-5 flex flex-col items-center">
           <img src={product.picture} />
         </div>
-        <div className="container px-4 flex flex-col">
+        <div className="container p-5 flex flex-col items-center md:items-start text-center md:text-left">
           <h2 className="font-bold py-2 m2">{product.name}</h2>
           <div className="py-2 m2">{product.description}</div>
           <div className="py-2 m2">${product.price}</div>
