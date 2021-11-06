@@ -1,3 +1,5 @@
+import { Fragment } from 'react'
+
 export default function Rating({ value }) {
   const yellowStar = (
     <svg
@@ -20,7 +22,13 @@ export default function Rating({ value }) {
 
   return (
     <div className="flex items-center mt-1">
-      {Array.from({ length: 5 }, (item, i) => (Math.round(value) >= i + 1 ? yellowStar : grayStar))}
+      {Array.from({ length: 5 }, (item, i) =>
+        Math.round(value) >= i + 1 ? (
+          <Fragment key={i}>{yellowStar}</Fragment>
+        ) : (
+          <Fragment key={i}>{grayStar}</Fragment>
+        )
+      )}
     </div>
   )
 }
