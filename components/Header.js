@@ -1,8 +1,8 @@
 import Link from 'next/link'
-import { Prefetch } from '@layer0/react'
-import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
+import { Prefetch } from '@layer0/react'
 import { getCategories } from '@/lib/cms'
+import { useEffect, useState } from 'react'
 
 export default function Header() {
   const [categories, setCategories] = useState()
@@ -26,8 +26,6 @@ export default function Header() {
     })
   }, [categories])
 
-  if (!categories) return null
-
   return (
     <>
       <header className="bg-white pt-2 flex flex-col items-center">
@@ -37,7 +35,7 @@ export default function Header() {
             <div className="text-center text-gray-700">Next.js Example</div>
           </a>
         </Link>
-        <div className="flex flex-col items-center w-full border-b-[1px] border-[#eaeaea]">
+        {categories && <div className="flex flex-col items-center w-full border-b-[1px] border-[#eaeaea]">
           <div className={`py-4 w-2/3 md:flex flex flex-row justify-between`}>
             {categories.map(({ categoryName, href }, i) => {
               const prefetchProps = {}
@@ -62,7 +60,7 @@ export default function Header() {
               )
             })}
           </div>
-        </div>
+        </div>}
       </header>
     </>
   )
