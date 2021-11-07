@@ -11,7 +11,7 @@ export default function ProductListingPage({ products, slug }) {
   }
   return (
     <>
-      <SEO meta={meta} />
+      <SEO {...meta} />
       <div className="flex flex-col items-center">
         <div className="mt-10 grid xs:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {products.map((product) => {

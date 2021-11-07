@@ -9,7 +9,7 @@ const Home = () => {
   }
   return (
     <>
-      <SEO meta={meta} />
+      <SEO {...meta} />
       <div className="flex flex-col justify-center items-center w-full min-h-[75vh]">
         <p className="text-center">
           This is an example Next.js app powered by Layer0. Click a category above to get started.

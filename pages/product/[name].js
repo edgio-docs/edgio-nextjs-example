@@ -11,7 +11,7 @@ export default function ProductPage({ product, slug }) {
   }
   return (
     <>
-      <SEO meta={meta} />
+      <SEO {...meta} />
       <div className="container center flex flex-col items-center md:flex-row pb-20">
         <div className="container p-5 flex flex-col items-center">
           <img src={product.picture} />
