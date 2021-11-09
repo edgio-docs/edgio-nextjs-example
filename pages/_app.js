@@ -1,23 +1,17 @@
-import '../styles/globals.css'
-import '../styles/tailwind.css'
-import Header from '../components/Header'
-import { useRouter } from 'next/router'
+import Head from 'next/head'
+import '@/styles/globals.css'
+import Header from '@/components/Header'
 import { useEffect, useState } from 'react'
-import LoadingIndicator from '../components/LoadingIndicator'
 import { prefetch } from '@layer0/prefetch/window/prefetch'
 
 function MyApp({ Component, pageProps }) {
-  const router = useRouter()
-  const [loading, setLoading] = useState(false)
-
+  const [mounted, setMounted] = useState('print')
   useEffect(() => {
-    router.events.on('routeChangeStart', () => setLoading(true))
-    router.events.on('routeChangeComplete', () => setLoading(false))
-
+    setMounted('all')
     // register a listener for SW messages to prefetch images from the PLP API responses
     const { serviceWorker } = navigator
     if (serviceWorker) {
-      serviceWorker.addEventListener('message', event => {
+      serviceWorker.addEventListener('message', (event) => {
         if (event.data.action === 'prefetch') {
           prefetch(event.data.url, event.data.as, event.data.options)
         }
@@ -27,7 +21,13 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <>
-      {loading && <LoadingIndicator />}
+      <Head>
+        <link
+          media={mounted}
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        />
+      </Head>
       <Header />
       <Component {...pageProps} />
     </>

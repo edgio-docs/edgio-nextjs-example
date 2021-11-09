@@ -100,3 +100,5 @@ BUILD_ID
 # yalc
 .yalc
 yalc.lock
+
+.vscode
