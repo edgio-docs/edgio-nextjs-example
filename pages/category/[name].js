@@ -1,6 +1,6 @@
 import SEO from '@/components/Seo'
 import { getCategory } from '@/lib/cms'
-import ListItem from '@/components/listItem'
+import ListItem from '@/components/ListItem'
 
 export default function ProductListingPage({ products, slug }) {
   const meta = {
