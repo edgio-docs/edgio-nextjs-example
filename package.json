@@ -19,12 +19,12 @@
     "react-dom": "^17.0.1"
   },
   "devDependencies": {
-    "@layer0/cli": "^3.16.11",
-    "@layer0/core": "^3.16.11",
-    "@layer0/devtools": "^3.16.11",
-    "@layer0/next": "^3.16.11",
-    "@layer0/prefetch": "^3.16.11",
-    "@layer0/react": "^3.16.11",
+    "@layer0/cli": "^4.5.0",
+    "@layer0/core": "^4.5.0",
+    "@layer0/devtools": "^4.5.0",
+    "@layer0/next": "^4.5.0",
+    "@layer0/prefetch": "^4.5.0",
+    "@layer0/react": "^4.5.0",
     "autoprefixer": "^10.3.6",
     "node-fetch": "^2.6.1",
     "postcss": "^8.3.8",
