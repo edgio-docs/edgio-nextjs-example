@@ -10,7 +10,7 @@
     "start": "next start",
     "format": "prettier '**/*' --write --ignore-unknown"
   },
-  "name": "layer0-next-example",
+  "name": "layer0-nextjs-example",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
