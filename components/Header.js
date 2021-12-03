@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import NextImage from 'next/image'
 import { useRouter } from 'next/router'
 import { Prefetch } from '@layer0/react'
 import { getCategories } from '@/lib/cms'
@@ -32,7 +31,7 @@ export default function Header() {
       <header className="bg-white pt-2 flex flex-col items-center">
         <Link href="/">
           <a>
-            <NextImage width={200} height={55.59} src="/layer0-icon.svg" alt="Layer0 Logo" title="Layer0 Logo" />
+            <img width={200} height={55.59} src="/layer0-icon.svg" alt="Layer0 Logo" title="Layer0 Logo" />
             <div className="text-center text-gray-700">Next.js Example</div>
           </a>
         </Link>
