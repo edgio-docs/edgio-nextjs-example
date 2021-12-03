@@ -27,6 +27,6 @@ jobs:
       - name: Next.js Example - Deploy to Layer0
         run: |
           npm ci
-          npm run layer0:deploy -- ${{'--branch=$BRANCH_NAME' || ''}} --token=$deploy_token ${{env.BRANCH_NAME != 'master' && '--environment=default' || ''}}
+          npm run layer0:deploy -- ${{'--branch=$BRANCH_NAME' || ''}} --token=$deploy_token ${{env.BRANCH_NAME != 'master' && '--environment=staging' || ''}}
         env:
           deploy_token: ${{secrets.LAYER0_DEPLOY_TOKEN}}
