@@ -4,7 +4,7 @@ A demo deployment of Next.js app to Layer0.
 
 ## Demo
 
-https://layer0-docs-layer0-next-example-default.layer0.link/
+https://layer0-docs-layer0-nextjs-example-default.layer0-limelight.link/
 
 ## Try It Now
 
