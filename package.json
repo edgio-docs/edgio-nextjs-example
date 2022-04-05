@@ -12,17 +12,17 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "next": "^11.0.0",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1"
+    "next": "^12.1.4",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
   },
   "devDependencies": {
-    "@layer0/cli": "^4.5.0",
-    "@layer0/core": "^4.5.0",
-    "@layer0/devtools": "^4.5.0",
-    "@layer0/next": "^4.5.0",
-    "@layer0/prefetch": "^4.5.0",
-    "@layer0/react": "^4.5.0",
+    "@layer0/cli": "^4.12.0",
+    "@layer0/core": "^4.12.0",
+    "@layer0/devtools": "^4.12.0",
+    "@layer0/next": "^4.12.0",
+    "@layer0/prefetch": "^4.12.0",
+    "@layer0/react": "^4.12.0",
     "autoprefixer": "^10.3.6",
     "node-fetch": "^2.6.1",
     "postcss": "^8.3.8",
