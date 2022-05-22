@@ -56,16 +56,18 @@ const ProductPreview = ({ name, path, images, prices }) => {
             className="w-100% h-auto" 
           />
           {/* In case JS is not available load the image as is */}
-          <img
-              src="/images/grey.png"
-              onError={({ currentTarget }) => {
-                // Code Ref: https://stackoverflow.com/questions/34097560/react-js-replace-img-src-onerror
-                currentTarget.onerror = null // prevents looping
-                currentTarget.src = '/images/grey.png'
-              }}
-              srcSet={finalImage}
-              className="w-100% h-auto"
-            />
+          <noscript>
+            <img
+                src="/images/grey.png"
+                onError={({ currentTarget }) => {
+                  // Code Ref: https://stackoverflow.com/questions/34097560/react-js-replace-img-src-onerror
+                  currentTarget.onerror = null // prevents looping
+                  currentTarget.src = '/images/grey.png'
+                }}
+                srcSet={finalImage}
+                className="w-100% h-auto"
+              />
+          </noscript>
         </a>
       </Prefetch>
     </Link>
