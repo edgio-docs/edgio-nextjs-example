@@ -46,27 +46,10 @@ const ProductPreview = ({ name, path, images, prices }) => {
           </div>
           <HeartIcon className="absolute top-0 right-0 h-[30px] w-[30px] bg-white p-2" />
           {/* In case JS is available, load the image by lazy hydration */}
-          <img 
-            src={productImage} 
-            onError={({ currentTarget }) => {
-              // Code Ref: https://stackoverflow.com/questions/34097560/react-js-replace-img-src-onerror
-              currentTarget.onerror = null // prevents looping
-              currentTarget.src = '/images/grey.png'
-            }} 
-            className="w-100% h-auto" 
-          />
+          <img src="/images/grey.png" srcSet={productImage} className="w-100% h-auto" />
           {/* In case JS is not available load the image as is */}
           <noscript>
-            <img
-                src="/images/grey.png"
-                onError={({ currentTarget }) => {
-                  // Code Ref: https://stackoverflow.com/questions/34097560/react-js-replace-img-src-onerror
-                  currentTarget.onerror = null // prevents looping
-                  currentTarget.src = '/images/grey.png'
-                }}
-                srcSet={finalImage}
-                className="w-100% h-auto"
-              />
+            <img src="/images/grey.png" srcSet={finalImage} className="w-100% h-auto" />
           </noscript>
         </a>
       </Prefetch>
