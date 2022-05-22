@@ -5,7 +5,7 @@ import { HeartIcon, StarIcon as StarIconOutline } from '@heroicons/react/outline
 
 const Product = ({ data }) => {
   const [allProducts, setAllProducts] = useState([])
-  const [selectedImage, setSelectedImage] = useState(data.images[0].url)
+  const [selectedImage, setSelectedImage] = useState(`https://opt.moovweb.net/?quality=1&img=${data.images[0].url}`)
 
   // Fetch the items for listing at the bottom
   useEffect(() => {
@@ -32,10 +32,10 @@ const Product = ({ data }) => {
             {data.images.map((i) => (
               <img
                 key={i.url}
-                src={i.url}
+                src={`https://opt.moovweb.net/?quality=1&img=${i.url}`}
                 loading="lazy"
                 onClick={() => {
-                  setSelectedImage(i.url)
+                  setSelectedImage(`https://opt.moovweb.net/?quality=1&img=${i.url}`)
                 }}
                 className="h-[250px] w-auto cursor-pointer hover:bg-white"
               />
@@ -74,7 +74,7 @@ const Product = ({ data }) => {
           <div className="flex flex-row items-start overflow-x-scroll">
             {allProducts.map((i) => (
               <Link key={i.images[0].url} href={'/product' + i.path}>
-                <img loading="lazy" key={i.images[0].url} src={i.images[0].url} className="h-[250px] w-auto cursor-pointer hover:bg-white" />
+                <img loading="lazy" key={i.images[0].url} src={`https://opt.moovweb.net/?quality=1&img=${i.images[0].url}`} className="h-[250px] w-auto cursor-pointer hover:bg-white" />
               </Link>
             ))}
           </div>

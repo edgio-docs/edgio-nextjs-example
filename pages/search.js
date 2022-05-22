@@ -7,7 +7,7 @@ import { HeartIcon } from '@heroicons/react/outline'
 import { createNextDataURL } from '@layer0/next/client'
 
 const ProductPreview = ({ name, path, images, prices }) => {
-  const finalImage = images[0].url
+  const finalImage = `https://opt.moovweb.net/?quality=1&img=${images[0].url}`
   const nonSlashPath = path.replace(/\//g, '')
   const [productImage, setProductImage] = useState('/images/grey.png')
   // In case JS is available, use the image loaded from the API response after the placeholders have been called
@@ -46,11 +46,26 @@ const ProductPreview = ({ name, path, images, prices }) => {
           </div>
           <HeartIcon className="absolute top-0 right-0 h-[30px] w-[30px] bg-white p-2" />
           {/* In case JS is available, load the image by lazy hydration */}
-          <img src={productImage} className="w-100% h-auto" />
+          <img 
+            src={productImage} 
+            onError={({ currentTarget }) => {
+              // Code Ref: https://stackoverflow.com/questions/34097560/react-js-replace-img-src-onerror
+              currentTarget.onerror = null // prevents looping
+              currentTarget.src = '/images/grey.png'
+            }} 
+            className="w-100% h-auto" 
+          />
           {/* In case JS is not available load the image as is */}
-          <noscript>
-            <img src="/images/grey.png" srcSet={finalImage} className="w-100% h-auto" />
-          </noscript>
+          <img
+              src="/images/grey.png"
+              onError={({ currentTarget }) => {
+                // Code Ref: https://stackoverflow.com/questions/34097560/react-js-replace-img-src-onerror
+                currentTarget.onerror = null // prevents looping
+                currentTarget.src = '/images/grey.png'
+              }}
+              srcSet={finalImage}
+              className="w-100% h-auto"
+            />
         </a>
       </Prefetch>
     </Link>
