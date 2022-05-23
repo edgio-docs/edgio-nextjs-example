@@ -5,7 +5,7 @@ import { HeartIcon, StarIcon as StarIconOutline } from '@heroicons/react/outline
 
 const Product = ({ data }) => {
   const [allProducts, setAllProducts] = useState([])
-  const [selectedImage, setSelectedImage] = useState(`https://opt.moovweb.net/?quality=1&img=${data.images[0].url}`)
+  const [selectedImage, setSelectedImage] = useState(`https://opt.moovweb.net/?quality=50&img=${data.images[0].url}`)
 
   // Fetch the items for listing at the bottom
   useEffect(() => {
@@ -26,7 +26,7 @@ const Product = ({ data }) => {
           </div>
           <HeartIcon className="absolute top-0 right-0 h-[50px] w-[50px] bg-white p-2" />
           <div className="flex w-full flex-col items-center">
-            <img className="w-auto md:h-[75vh]" src={selectedImage} />
+            <img className="w-full max-w-[600px] h-auto" src={selectedImage} />
           </div>
           <div className="flex flex-row items-start overflow-x-scroll bg-purple-900">
             {data.images.map((i) => (
@@ -35,7 +35,7 @@ const Product = ({ data }) => {
                 src={`https://opt.moovweb.net/?quality=1&img=${i.url}`}
                 loading="lazy"
                 onClick={() => {
-                  setSelectedImage(`https://opt.moovweb.net/?quality=1&img=${i.url}`)
+                  setSelectedImage(`https://opt.moovweb.net/?quality=50&img=${i.url}`)
                 }}
                 className="h-[250px] w-auto cursor-pointer hover:bg-white"
               />
