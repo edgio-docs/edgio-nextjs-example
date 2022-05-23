@@ -82,7 +82,7 @@ const Search = ({ searchAllData }) => {
 
 export default Search
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const fetchCall = await fetch('https://layer0-docs-layer0-ecommmerce-api-example-default.layer0-limelight.link/products/all')
   if (!fetchCall.ok) {
     return {
