@@ -5,10 +5,10 @@ const Navbar = () => {
   return (
     <div className="flex flex-row flex-wrap items-center justify-between py-3 px-5">
       <div className="order-2 flex flex-row items-center space-x-4 py-1 md:order-1">
-        <Link href={'/search'}>
+        <Link href="/search">
           <a className="text-gray-500">All</a>
         </Link>
-        <Link href={'/search/shop-all'}>
+        <Link href="/search/shop-all">
           <a className="text-gray-500">Shop All</a>
         </Link>
       </div>

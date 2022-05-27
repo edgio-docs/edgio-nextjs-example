@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { Fragment } from 'react'
+import classNames from 'classnames'
 
 const listingItems = {
   Relevance: [
@@ -27,7 +28,7 @@ const RightSidebar = ({}) => {
     <div className="flex w-full flex-col pl-5">
       {Object.keys(listingItems).map((item, index) => (
         <Fragment key={item}>
-          <h2 className={`${index > 0 ? 'mt-10 ' : ''}text-black text-lg font-medium`}>{item}</h2>
+          <h2 className={classNames({ 'mt-10': index > 0 }, 'text-black', 'text-lg', 'font-medium')}>{item}</h2>
           {listingItems[item].map((subItem) => (
             <Link passHref key={subItem.name} href={subItem.route}>
               <a>
