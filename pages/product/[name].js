@@ -6,7 +6,7 @@ import { shimmer, toBase64 } from '@/components/shimmer'
 import { HeartIcon, StarIcon as StarIconOutline } from '@heroicons/react/outline'
 
 const Product = ({ data }) => {
-  const [allProducts, setAllProducts] = useState([])
+  const [relatedProducts, setRelatedProducts] = useState([])
   const [selectedImage, setSelectedImage] = useState(data.images[0].url)
 
   // Fetch the items for listing at the bottom
@@ -14,7 +14,7 @@ const Product = ({ data }) => {
     fetch('https://layer0-docs-layer0-ecommmerce-api-example-default.layer0-limelight.link/products/all')
       .then((res) => res.json())
       .then((res) => {
-        setAllProducts(res)
+        setRelatedProducts(res)
       })
   }, [])
 
@@ -82,12 +82,12 @@ const Product = ({ data }) => {
         </div>
       </div>
       <div className="mt-10 h-[1px] w-full bg-gray-300"></div>
-      {allProducts.length && (
+      {relatedProducts.length && (
         <div className="relative mt-10 flex w-full flex-col">
           <h1 className="px-5 text-2xl font-bold">Related Products</h1>
           <div className="flex flex-row items-start overflow-x-scroll">
-            {allProducts
-              .filter((_, ind) => ind < 4)
+            {relatedProducts
+              .filter((_, ind) => ind < 5)
               .map((i) => (
                 <Link passHref key={i.images[0].url} href={`/product${i.path}`}>
                   <a>
