@@ -1,11 +1,13 @@
 import Link from 'next/link'
+import NextImage from 'next/image'
 import { useState, useEffect } from 'react'
 import { StarIcon } from '@heroicons/react/solid'
+import { shimmer, toBase64 } from '@/components/shimmer'
 import { HeartIcon, StarIcon as StarIconOutline } from '@heroicons/react/outline'
 
 const Product = ({ data }) => {
   const [allProducts, setAllProducts] = useState([])
-  const [selectedImage, setSelectedImage] = useState(`https://opt.moovweb.net/?quality=50&img=${data.images[0].url}`)
+  const [selectedImage, setSelectedImage] = useState(data.images[0].url)
 
   // Fetch the items for listing at the bottom
   useEffect(() => {
@@ -26,18 +28,30 @@ const Product = ({ data }) => {
           </div>
           <HeartIcon className="absolute top-0 right-0 h-[50px] w-[50px] bg-white p-2" />
           <div className="flex w-full flex-col items-center">
-            <img className="w-full max-w-[600px] h-auto" src={selectedImage} />
+            <NextImage
+              width={600}
+              height={600}
+              quality={100}
+              placeholder="blur"
+              src={selectedImage}
+              className="h-auto w-full max-w-[600px]"
+              blurDataURL={`data:image/svg+xml;base64,${toBase64(shimmer(1400, 720))}`}
+            />
           </div>
           <div className="flex flex-row items-start overflow-x-scroll bg-purple-900">
             {data.images.map((i) => (
-              <img
+              <NextImage
                 key={i.url}
-                src={`https://opt.moovweb.net/?quality=1&img=${i.url}`}
-                loading="lazy"
+                src={i.url}
+                width={1200}
+                height={1200}
+                quality={100}
+                placeholder="blur"
                 onClick={() => {
-                  setSelectedImage(`https://opt.moovweb.net/?quality=50&img=${i.url}`)
+                  setSelectedImage(i.url)
                 }}
                 className="h-[250px] w-auto cursor-pointer hover:bg-white"
+                blurDataURL={`data:image/svg+xml;base64,${toBase64(shimmer(1400, 720))}`}
               />
             ))}
           </div>
@@ -72,11 +86,24 @@ const Product = ({ data }) => {
         <div className="relative mt-10 flex w-full flex-col">
           <h1 className="px-5 text-2xl font-bold">Related Products</h1>
           <div className="flex flex-row items-start overflow-x-scroll">
-            {allProducts.map((i) => (
-              <Link key={i.images[0].url} href={'/product' + i.path}>
-                <img loading="lazy" key={i.images[0].url} src={`https://opt.moovweb.net/?quality=1&img=${i.images[0].url}`} className="h-[250px] w-auto cursor-pointer hover:bg-white" />
-              </Link>
-            ))}
+            {allProducts
+              .filter((_, ind) => ind < 4)
+              .map((i) => (
+                <Link passHref key={i.images[0].url} href={`/product${i.path}`}>
+                  <a>
+                    <NextImage
+                      width="250px"
+                      height="250px"
+                      quality={100}
+                      placeholder="blur"
+                      key={i.images[0].url}
+                      src={i.images[0].url}
+                      className="h-[250px] w-[250px] cursor-pointer hover:bg-white"
+                      blurDataURL={`data:image/svg+xml;base64,${toBase64(shimmer(1400, 720))}`}
+                    />
+                  </a>
+                </Link>
+              ))}
           </div>
         </div>
       )}
