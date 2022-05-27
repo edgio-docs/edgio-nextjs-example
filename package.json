@@ -14,8 +14,10 @@
     "@layer0/rum": "^3.0.0",
     "classnames": "^2.3.1",
     "next": "latest",
+    "node-fetch": "^3.2.4",
     "react": "^18.0.1",
-    "react-dom": "^18.0.1"
+    "react-dom": "^18.0.1",
+    "rewire": "^6.0.0"
   },
   "devDependencies": {
     "@layer0/cli": "^4.13.10",
