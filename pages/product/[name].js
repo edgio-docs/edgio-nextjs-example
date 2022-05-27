@@ -116,16 +116,14 @@ export default Product
 
 export async function getServerSideProps({ params }) {
   const slug = params.name
-  const fetchCall = await fetch(`https://layer0-docs-layer0-ecommmerce-api-example-default.layer0-limelight.link/products/${slug}`)
-  if (!fetchCall.ok) {
+  const resp = await fetch(`https://layer0-docs-layer0-ecommmerce-api-example-default.layer0-limelight.link/products/${slug}`)
+  if (!resp.ok) {
     return {
       notFound: true,
     }
   }
-  const dataReturned = await fetchCall.json()
+  const data = await resp.json()
   return {
-    props: {
-      data: dataReturned,
-    },
+    props: { data },
   }
 }

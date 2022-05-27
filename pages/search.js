@@ -41,7 +41,7 @@ const ProductPreview = ({ name, path, images, prices }) => {
   )
 }
 
-const Search = ({ searchAllData }) => {
+const Search = ({ data }) => {
   return (
     <div className="flex-col items-center justify-start">
       <div className="mb-5 flex w-full w-full flex-row items-start px-5">
@@ -49,9 +49,9 @@ const Search = ({ searchAllData }) => {
           <LeftSidebar />
         </div>
         <div className="flex w-full flex-col items-start pt-5 md:w-[70%]">
-          <h2>Showing {searchAllData.length} Results</h2>
+          <h2>Showing {data.length} Results</h2>
           <div className="mt-5 flex flex-row flex-wrap items-start">
-            {searchAllData.map((i) => (
+            {data.map((i) => (
               <ProductPreview key={i.path} {...i} />
             ))}
           </div>
@@ -67,14 +67,14 @@ const Search = ({ searchAllData }) => {
 export default Search
 
 export async function getServerSideProps() {
-  const fetchCall = await fetch('https://layer0-docs-layer0-ecommmerce-api-example-default.layer0-limelight.link/products/all')
-  if (!fetchCall.ok) {
+  const resp = await fetch('https://layer0-docs-layer0-ecommmerce-api-example-default.layer0-limelight.link/products/all')
+  if (!resp.ok) {
     return {
       notFound: true,
     }
   }
-  const searchAllData = await fetchCall.json()
+  const data = await resp.json()
   return {
-    props: { searchAllData },
+    props: { data },
   }
 }
