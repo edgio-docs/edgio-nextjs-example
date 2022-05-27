@@ -7,7 +7,6 @@ import Navbar from '@/components/Navbar'
 // https://docs.layer0.co/guides/core_web_vitals#npm-or-yarn
 // Include the RUM Analytics in the production build only
 if (process.env.NODE_ENV === 'production') {
-  console.log(`Value of RUM_TOKEN as pulled down by Layer0 CLI from Layer0 Console is ${process.env.RUM_TOKEN}`)
   new Metrics({
     // Set this TOKEN as an environment variable at Layer0 Console
     // More on creating env variables: https://docs.layer0.co/guides/environments#creating-environment-variables
