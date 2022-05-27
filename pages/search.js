@@ -67,7 +67,7 @@ const Search = ({ data }) => {
 export default Search
 
 export async function getServerSideProps() {
-  const resp = await fetch('https://layer0-docs-layer0-ecommmerce-api-example-default.layer0-limelight.link/products/all')
+  const resp = await fetch('https://rishi-raj-jain-yg-layer0-nextjs-example-default.layer0-limelight.link/l0-api/products/all')
   if (!resp.ok) {
     return {
       notFound: true,

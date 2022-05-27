@@ -24,8 +24,8 @@ const ASSET_CACHE_HANDLER = ({ removeUpstreamResponseHeader, cache }) => {
 }
 
 const NEXT_CACHE_HANDLER = ({ removeUpstreamResponseHeader, cache }) => {
-  // Remove the cache-control header coming in from the Next.js app, this is to
-  // ensure that the response is cacheable
+  // Remove the cache-control header coming in from the Next.js app,
+  // this is to ensure that the response is cacheable
   removeUpstreamResponseHeader('cache-control')
   // Set the caching values
   cache({
@@ -47,6 +47,20 @@ const NEXT_CACHE_HANDLER = ({ removeUpstreamResponseHeader, cache }) => {
   })
 }
 
+const API_CACHE_HANDLER = ({ cache, proxy }) => {
+  cache({
+    edge: {
+      maxAgeSeconds: 60 * 60,
+      // Cache responses even if they contain cache-control: private header
+      // https://docs.layer0.co/guides/caching#private
+      // https://docs.layer0.co/docs/api/core/interfaces/_router_cacheoptions_.edgecacheoptions.html#forceprivatecaching
+      forcePrivateCaching: true,
+    },
+    browser: false,
+  })
+  proxy('api', { path: ':path*' })
+}
+
 module.exports = new Router()
   // Pre-render the static home page
   // By pre-rendering, once the project is deployed
@@ -66,5 +80,7 @@ module.exports = new Router()
   .match('/_next/data/:build/product/:id.json', NEXT_CACHE_HANDLER)
   // Asset caching
   .match('/_next/image/:path*', ASSET_CACHE_HANDLER)
+  // API (Any backend) caching
+  .match('/l0-api/:path*', API_CACHE_HANDLER)
   // Use the default set of Next.js routes
   .use(nextRoutes)

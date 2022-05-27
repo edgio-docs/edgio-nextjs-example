@@ -11,7 +11,7 @@ const Product = ({ data }) => {
 
   // Fetch the items for listing at the bottom
   useEffect(() => {
-    fetch('https://layer0-docs-layer0-ecommmerce-api-example-default.layer0-limelight.link/products/all')
+    fetch('/l0-api/products/all')
       .then((res) => res.json())
       .then((res) => {
         setRelatedProducts(res)
@@ -116,7 +116,7 @@ export default Product
 
 export async function getServerSideProps({ params }) {
   const slug = params.name
-  const resp = await fetch(`https://layer0-docs-layer0-ecommmerce-api-example-default.layer0-limelight.link/products/${slug}`)
+  const resp = await fetch(`https://rishi-raj-jain-yg-layer0-nextjs-example-default.layer0-limelight.link/l0-api/products/${slug}`)
   if (!resp.ok) {
     return {
       notFound: true,
