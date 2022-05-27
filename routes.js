@@ -3,8 +3,10 @@ import { Router } from '@layer0/core/router'
 import getPathsToPrerender from 'prerenderRequests'
 
 const ASSET_CACHE_HANDLER = ({ removeUpstreamResponseHeader, cache }) => {
-  // Remove the cache-control header coming in from the Next.js app, this is to
-  // ensure that the response is cacheable
+  // Remove the cache-control header coming in from the Next.js app,
+  // and remove the set-cookie header coming in from the Next.js app,
+  // this is to ensure that the response is cacheable
+  removeUpstreamResponseHeader('set-cookie')
   removeUpstreamResponseHeader('cache-control')
   // Set the caching values
   cache({
@@ -63,6 +65,6 @@ module.exports = new Router()
   .match('/_next/data/:build/search.json', NEXT_CACHE_HANDLER)
   .match('/_next/data/:build/product/:id.json', NEXT_CACHE_HANDLER)
   // Asset caching
-  .match('/images/:path*', ASSET_CACHE_HANDLER)
+  .match('/_next/image/:path*', ASSET_CACHE_HANDLER)
   // Use the default set of Next.js routes
   .use(nextRoutes)

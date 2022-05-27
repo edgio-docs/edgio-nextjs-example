@@ -1,11 +1,4 @@
-import { useEffect } from 'react'
-import { prefetch } from '@layer0/prefetch/window/prefetch'
-
-const Home = ({}) => {
-  // Prefetch grey image using Layer0 for instant placeholder loads on the PLP page
-  useEffect(() => {
-    prefetch('/images/grey.png')
-  }, [])
+const Home = () => {
   return (
     <div className="flex min-h-[70vh] flex-col items-center justify-center px-5 md:px-0">
       <div className="flex w-full flex-row flex-wrap md:w-2/3">

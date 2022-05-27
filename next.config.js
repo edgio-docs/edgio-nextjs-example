@@ -16,6 +16,11 @@ const _preLayer0Export = {
       },
     ]
   },
+  // For image optimization using Next.js Image's component
+  // Read more on: https://nextjs.org/docs/basic-features/image-optimization
+  images: {
+    domains: ['layer0-docs-layer0-ecommmerce-api-example-default.layer0-limelight.link'],
+  },
 }
 
 module.exports = (phase, config) =>

@@ -1,32 +1,14 @@
 import Link from 'next/link'
+import NextImage from 'next/image'
 import { Prefetch } from '@layer0/react'
-import { useEffect, useState } from 'react'
 import LeftSidebar from '@/components/LeftSidebar'
 import RightSidebar from '@/components/RightSidebar'
 import { HeartIcon } from '@heroicons/react/outline'
 import { createNextDataURL } from '@layer0/next/client'
+import { shimmer, toBase64 } from '@/components/shimmer'
 
 const ProductPreview = ({ name, path, images, prices }) => {
-  const finalImage = `https://opt.moovweb.net/?quality=1&img=${images[0].url}`
   const nonSlashPath = path.replace(/\//g, '')
-  const [productImage, setProductImage] = useState('/images/grey.png')
-  // In case JS is available, use the image loaded from the API response after the placeholders have been called
-  useEffect(() => {
-    let imagesList = window.imagesViewed
-    // If the visited object doesn't exist, create it
-    if (!imagesList) {
-      window.imagesViewed = {}
-      imagesList = window.imagesViewed
-    }
-    if (Object.keys(imagesList).length > 0 && imagesList[finalImage]) {
-      setProductImage(finalImage)
-    } else {
-      setTimeout(() => {
-        setProductImage(finalImage)
-        window.imagesViewed[finalImage] = true
-      }, 300)
-    }
-  }, [])
   return (
     <Link passHref href={`/product/${nonSlashPath}`}>
       {/* CreateNextDataURL generates the link to prefetch the data,
@@ -40,17 +22,19 @@ const ProductPreview = ({ name, path, images, prices }) => {
         })}
       >
         <a className="relative mt-2 w-full border border-white bg-gray-100 p-1 sm:w-1/2 md:w-1/3">
-          <div className="absolute top-0 left-0 flex flex-col items-start">
+          <div className="absolute top-0 left-0 z-10 flex flex-col items-start">
             <h3 className="rounded bg-white py-2 px-4 text-xl font-medium text-black">{name}</h3>
             <h4 className="text-md rounded bg-white py-2 px-4 text-black">{`$ ${prices.price.value} ${prices.price.currencyCode}`}</h4>
           </div>
           <HeartIcon className="absolute top-0 right-0 h-[30px] w-[30px] bg-white p-2" />
-          {/* In case JS is available, load the image by lazy hydration */}
-          <img src="/images/grey.png" srcSet={productImage} className="w-100% h-auto" />
-          {/* In case JS is not available load the image as is */}
-          <noscript>
-            <img src="/images/grey.png" srcSet={finalImage} className="w-100% h-auto" />
-          </noscript>
+          <NextImage
+            width={1200}
+            height={1200}
+            quality={100}
+            placeholder="blur"
+            src={images[0].url}
+            blurDataURL={`data:image/svg+xml;base64,${toBase64(shimmer(1400, 720))}`}
+          />
         </a>
       </Prefetch>
     </Link>
