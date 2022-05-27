@@ -57,8 +57,8 @@ module.exports = new Router()
     return serviceWorker('.next/static/service-worker.js')
   })
   // The data in Next.js comes through _next/data/project-build-id route.
-  // For the route /product/product-slug, cache it on the edge so that
-  // can be prefetched
+  // For the route /product/product-slug, cache this SSR route's data
+  // it on the edge so that can be prefetched
   .match('/_next/data/:build/index.json', NEXT_CACHE_HANDLER)
   .match('/_next/data/:build/search.json', NEXT_CACHE_HANDLER)
   .match('/_next/data/:build/product/:id.json', NEXT_CACHE_HANDLER)
