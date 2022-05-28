@@ -1,6 +1,8 @@
 import Link from 'next/link'
+import { useEffect } from 'react'
 import NextImage from 'next/image'
 import { Prefetch } from '@layer0/react'
+import { prefetch } from '@layer0/prefetch/window'
 import LeftSidebar from '@/components/LeftSidebar'
 import RightSidebar from '@/components/RightSidebar'
 import { HeartIcon } from '@heroicons/react/outline'
@@ -42,6 +44,10 @@ const ProductPreview = ({ name, path, images, prices }) => {
 }
 
 const Search = ({ data }) => {
+  // Prefetch the API call on PDP as soon as the page mounts
+  useEffect(() => {
+    prefetch('/l0-api/products/all')
+  }, [])
   return (
     <div className="flex-col items-center justify-start">
       <div className="mb-5 flex w-full w-full flex-row items-start px-5">
