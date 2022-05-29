@@ -6,7 +6,7 @@ import { prefetch } from '@layer0/prefetch/window/prefetch'
 
 // Include the RUM Analytics in the production build only
 if (process.env.NODE_ENV === 'production') {
-  Layer0RUM(process.env.RUM_TOKEN)
+  Layer0RUM('8016af1c-fb31-45c1-b1e0-312bffabbe93')
 }
 
 const MyApp = ({ Component, pageProps }) => {

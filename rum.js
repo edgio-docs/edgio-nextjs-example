@@ -7,7 +7,7 @@ export default function Layer0RUM(token) {
   new Metrics({
     // Set this TOKEN as an environment variable at Layer0 Console
     // More on creating env variables: https://docs.layer0.co/guides/environments#creating-environment-variables
-    token,
+    token: token,
     router: new Router()
       .match('/', ({ setPageLabel }) => setPageLabel('home'))
       .match('/search', ({ setPageLabel }) => setPageLabel('search'))
