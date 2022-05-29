@@ -20,6 +20,10 @@ const Product = ({ data }) => {
       })
   }, [])
 
+  useEffect(() => {
+    setSelectedImage(data.images[0].url)
+  }, [data])
+
   return (
     <div className="flex w-full flex-col items-start">
       <div className="flex w-full flex-col items-start md:flex-row">
@@ -29,12 +33,11 @@ const Product = ({ data }) => {
             <h4 className="bg-white py-2 px-4 text-lg text-black">{`$ ${data.prices.price.value} ${data.prices.price.currencyCode}`}</h4>
           </div>
           <HeartIcon className="absolute top-0 right-0 h-[50px] w-[50px] bg-white p-2" />
-          <div className="flex w-full flex-col items-center">
+          <div className="relative flex h-[600px] w-full flex-col items-center">
             <NextImage
-              width={600}
-              height={600}
-              quality={100}
+              layout="fill"
               placeholder="blur"
+              objectFit="contain"
               src={selectedImage}
               className="h-auto w-full max-w-[600px]"
               blurDataURL={`data:image/svg+xml;base64,${toBase64(shimmer(1400, 720))}`}

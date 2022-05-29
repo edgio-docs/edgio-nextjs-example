@@ -76,7 +76,7 @@ module.exports = new Router()
   // For the route /product/product-slug, cache this SSR route's data
   // it on the edge so that can be prefetched
   .match('/_next/data/:build/index.json', NEXT_CACHE_HANDLER)
-  .match('/_next/data/:build/search.json', NEXT_CACHE_HANDLER)
+  .match('/_next/data/:build/commerce.json', NEXT_CACHE_HANDLER)
   .match('/_next/data/:build/product/:id.json', NEXT_CACHE_HANDLER)
   // Asset caching
   .match('/_next/image/:path*', ASSET_CACHE_HANDLER)

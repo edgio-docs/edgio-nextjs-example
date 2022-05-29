@@ -6,25 +6,25 @@ const listingItems = {
   'All Categories': [
     {
       name: 'Apparel',
-      route: '/search/shop-all',
+      route: '/commerce',
     },
     {
       name: 'Shop All',
-      route: '/search/shop-all',
+      route: '/commerce',
     },
   ],
   'All Designers': [
     {
       name: 'Sagaform',
-      route: '/search/shop-all',
+      route: '/commerce',
     },
     {
       name: 'OFS',
-      route: '/search/shop-all',
+      route: '/commerce',
     },
     {
       name: 'ACME',
-      route: '/search/shop-all',
+      route: '/commerce',
     },
   ],
 }

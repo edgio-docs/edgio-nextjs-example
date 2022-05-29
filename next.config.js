@@ -11,8 +11,8 @@ const _preLayer0Export = {
   async rewrites() {
     return [
       {
-        source: '/search/:path*',
-        destination: '/search',
+        source: '/commerce/:path*',
+        destination: '/commerce',
       },
     ]
   },

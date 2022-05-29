@@ -10,8 +10,7 @@ export default function Layer0RUM(token) {
     token: token,
     router: new Router()
       .match('/', ({ setPageLabel }) => setPageLabel('home'))
-      .match('/search', ({ setPageLabel }) => setPageLabel('search'))
-      .match('/search/:id', ({ setPageLabel }) => setPageLabel('search'))
-      .match('/products/:id', ({ setPageLabel }) => setPageLabel('products/:id')),
+      .match('/commerce', ({ setPageLabel }) => setPageLabel('commerce'))
+      .match('/product/:id', ({ setPageLabel }) => setPageLabel('product/:id')),
   }).collect()
 }
