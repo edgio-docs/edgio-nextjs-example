@@ -2,6 +2,7 @@ import Layer0RUM from 'rum'
 import '@/styles/globals.css'
 import { useEffect } from 'react'
 import Navbar from '@/components/Navbar'
+import { relativizeURL } from '@/components/Shimmer'
 import { prefetch } from '@layer0/prefetch/window/prefetch'
 
 // Include the RUM Analytics in the production build only
@@ -16,8 +17,7 @@ const MyApp = ({ Component, pageProps }) => {
     if (serviceWorker) {
       serviceWorker.addEventListener('message', (event) => {
         if (event.data.action === 'prefetch') {
-          console.log(event.data)
-          prefetch(event.data.url, event.data.as, event.data.options)
+          prefetch(relativizeURL(event.data.url), event.data.as, event.data.options)
         }
       })
     }

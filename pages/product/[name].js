@@ -2,7 +2,7 @@ import Link from 'next/link'
 import NextImage from 'next/image'
 import { useState, useEffect } from 'react'
 import { StarIcon } from '@heroicons/react/solid'
-import { shimmer, toBase64 } from '@/components/shimmer'
+import { relativizeURL, shimmer, toBase64 } from '@/components/Shimmer'
 import { HeartIcon, StarIcon as StarIconOutline } from '@heroicons/react/outline'
 
 const Product = ({ data }) => {
@@ -47,10 +47,10 @@ const Product = ({ data }) => {
             {data.images.map((i) => (
               <img
                 key={i.url}
-                src={i.url}
                 loading="lazy"
+                src={relativizeURL(i.url)}
                 onClick={() => {
-                  setSelectedImage(i.url)
+                  setSelectedImage(relativizeURL(i.url))
                 }}
                 className="h-[250px] w-auto cursor-pointer hover:bg-white"
               />
@@ -89,7 +89,7 @@ const Product = ({ data }) => {
           <div className="flex flex-row items-start overflow-x-scroll">
             {relatedProducts.map((i) => (
               <Link key={i.images[0].url} href={`/product${i.path}`}>
-                <img loading="lazy" key={i.images[0].url} src={i.images[0].url} className="h-auto w-[250px] cursor-pointer hover:bg-white" />
+                <img loading="lazy" key={i.images[0].url} src={relativizeURL(i.images[0].url)} className="h-auto w-[250px] cursor-pointer hover:bg-white" />
               </Link>
             ))}
           </div>

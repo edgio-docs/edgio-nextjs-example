@@ -14,3 +14,5 @@ export const shimmer = (w, h) => `
 `
 
 export const toBase64 = (str) => typeof window === 'undefined' ? Buffer.from(str).toString('base64') : window.btoa(str)
+
+export const relativizeURL= (str) => str.replace('https://layer0-docs-layer0-ecommmerce-api-example-default.layer0-limelight.link/', '/l0-api/')

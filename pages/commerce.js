@@ -7,7 +7,7 @@ import LeftSidebar from '@/components/LeftSidebar'
 import RightSidebar from '@/components/RightSidebar'
 import { HeartIcon } from '@heroicons/react/outline'
 import { createNextDataURL } from '@layer0/next/client'
-import { shimmer, toBase64 } from '@/components/shimmer'
+import { shimmer, toBase64 } from '@/components/Shimmer'
 
 const ProductPreview = ({ name, path, images, prices }) => {
   const nonSlashPath = path.replace(/\//g, '')
