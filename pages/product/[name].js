@@ -14,7 +14,9 @@ const Product = ({ data }) => {
     fetch('/l0-api/products/all')
       .then((res) => res.json())
       .then((res) => {
-        setRelatedProducts(res)
+        if (res && res.length > 0) {
+          setRelatedProducts(res)
+        }
       })
   }, [])
 
@@ -40,18 +42,14 @@ const Product = ({ data }) => {
           </div>
           <div className="flex flex-row items-start overflow-x-scroll bg-purple-900">
             {data.images.map((i) => (
-              <NextImage
+              <img
                 key={i.url}
                 src={i.url}
-                width={1200}
-                height={1200}
-                quality={100}
-                placeholder="blur"
+                loading="lazy"
                 onClick={() => {
                   setSelectedImage(i.url)
                 }}
                 className="h-[250px] w-auto cursor-pointer hover:bg-white"
-                blurDataURL={`data:image/svg+xml;base64,${toBase64(shimmer(1400, 720))}`}
               />
             ))}
           </div>
@@ -86,24 +84,11 @@ const Product = ({ data }) => {
         <div className="relative mt-10 flex w-full flex-col">
           <h1 className="px-5 text-2xl font-bold">Related Products</h1>
           <div className="flex flex-row items-start overflow-x-scroll">
-            {relatedProducts
-              .filter((_, ind) => ind < 5)
-              .map((i) => (
-                <Link passHref key={i.images[0].url} href={`/product${i.path}`}>
-                  <a>
-                    <NextImage
-                      width="250px"
-                      height="250px"
-                      quality={100}
-                      placeholder="blur"
-                      key={i.images[0].url}
-                      src={i.images[0].url}
-                      className="h-[250px] w-[250px] cursor-pointer hover:bg-white"
-                      blurDataURL={`data:image/svg+xml;base64,${toBase64(shimmer(1400, 720))}`}
-                    />
-                  </a>
-                </Link>
-              ))}
+            {relatedProducts.map((i) => (
+              <Link key={i.images[0].url} href={`/product${i.path}`}>
+                <img loading="lazy" key={i.images[0].url} src={i.images[0].url} className="h-auto w-[250px] cursor-pointer hover:bg-white" />
+              </Link>
+            ))}
           </div>
         </div>
       )}
