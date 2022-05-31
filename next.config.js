@@ -32,5 +32,9 @@ module.exports = (phase, config) =>
       // More on Layer0 Source Maps
       // https://docs.layer0.co/guides/next#withlayer0
       layer0SourceMaps: true,
+      // Disable Layer0 Devtools that are added
+      // by default with a Next.js app in production
+      // To be documented in Layer0 docs
+      disableLayer0DevTools: true
     })
   )
