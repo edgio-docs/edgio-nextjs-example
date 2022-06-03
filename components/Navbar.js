@@ -6,11 +6,9 @@ const Navbar = () => {
     <div className="flex flex-row flex-wrap items-center justify-between py-3 px-5">
       <div className="order-2 flex flex-row items-center space-x-4 py-1 md:order-1">
         <Link href="/commerce">
-          <a className="text-gray-500">All</a>
-        </Link>
-        <Link href="/commerce">
           <a className="text-gray-500">Shop All</a>
         </Link>
+        <a target="_blank" href="https://github.com/layer0-docs/layer0-nextjs-example" className="text-gray-500">GitHub</a>
       </div>
       <Link className="order-1 md:order-2" href="/">
         <a>
