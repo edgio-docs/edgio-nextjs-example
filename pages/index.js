@@ -32,7 +32,7 @@ const Home = () => {
         <div className="mt-10 flex w-full flex-col items-start justify-start rounded p-5 md:w-1/2">
           <h1 className="text-xl font-bold">Layer0 Prefetching</h1>
           <h3 className="mt-2 text-lg">
-            {`Layer0 allows you to speed up the user’s browsing experience by prefetching pages and API calls that they are likely to need.`}
+            Layer0 allows you to speed up the user’s browsing experience by prefetching pages and API calls that they are likely to need.
           </h3>
           <a className="mt-auto text-blue-600 hover:underline" href="https://docs.layer0.co/guides/prefetching" target="_blank">
             Learn More &rarr;
