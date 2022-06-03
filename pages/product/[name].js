@@ -100,7 +100,7 @@ export default Product
 
 export async function getServerSideProps({ params }) {
   const slug = params.name
-  const resp = await fetch(`https://rishi-raj-jain-yg-layer0-nextjs-example-default.layer0-limelight.link/l0-api/products/${slug}`)
+  const resp = await fetch(`https://layer0-docs-layer0-ecommmerce-api-example-default.layer0-limelight.link/products/${slug}`)
   if (!resp.ok) {
     return {
       notFound: true,
