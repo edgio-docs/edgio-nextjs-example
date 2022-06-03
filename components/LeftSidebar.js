@@ -29,7 +29,7 @@ const listingItems = {
   ],
 }
 
-const LeftSidebar = ({}) => {
+const LeftSidebar = () => {
   return (
     <div className="flex w-full flex-col">
       {Object.keys(listingItems).map((item, index) => (
