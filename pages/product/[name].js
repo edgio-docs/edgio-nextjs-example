@@ -7,7 +7,7 @@ import { HeartIcon, StarIcon as StarIconOutline } from '@heroicons/react/outline
 
 const Product = ({ data }) => {
   const [relatedProducts, setRelatedProducts] = useState([])
-  const [selectedImage, setSelectedImage] = useState(data.images[0].url)
+  const [selectedImage, setSelectedImage] = useState(0)
 
   // Fetch the items for listing at the bottom
   useEffect(() => {
@@ -19,10 +19,6 @@ const Product = ({ data }) => {
         }
       })
   }, [])
-
-  useEffect(() => {
-    setSelectedImage(data.images[0].url)
-  }, [data])
 
   return (
     <div className="flex w-full flex-col items-start">
@@ -38,19 +34,19 @@ const Product = ({ data }) => {
               layout="fill"
               placeholder="blur"
               objectFit="contain"
-              src={selectedImage}
+              src={data.images[selectedImage].url}
               className="h-auto w-full max-w-[600px]"
               blurDataURL={`data:image/svg+xml;base64,${toBase64(shimmer(1400, 720))}`}
             />
           </div>
           <div className="flex flex-row items-start overflow-x-scroll bg-purple-900">
-            {data.images.map((i) => (
+            {data.images.map((i, ind) => (
               <img
                 key={i.url}
                 loading="lazy"
                 src={relativizeURL(i.url)}
                 onClick={() => {
-                  setSelectedImage(relativizeURL(i.url))
+                  setSelectedImage(ind)
                 }}
                 className="h-[250px] w-auto cursor-pointer hover:bg-white"
               />
