@@ -98,9 +98,10 @@ const Product = ({ data }) => {
 
 export default Product
 
-export async function getServerSideProps({ params }) {
+export async function getServerSideProps({ req, params }) {
+  let origin = req.headers['host']
   const slug = params.name
-  const resp = await fetch(`https://layer0-docs-layer0-ecommmerce-api-example-default.layer0-limelight.link/products/${slug}`)
+  const resp = await fetch(`${origin}/l0-api/products/${slug}`)
   if (!resp.ok) {
     return {
       notFound: true,

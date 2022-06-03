@@ -73,7 +73,8 @@ const Search = ({ data }) => {
 export default Search
 
 export async function getServerSideProps() {
-  const resp = await fetch('https://layer0-docs-layer0-ecommmerce-api-example-default.layer0-limelight.link/products/all')
+  let origin = req.headers['host']
+  const resp = await fetch(`${origin}/l0-api/products/all`)
   if (!resp.ok) {
     return {
       notFound: true,
