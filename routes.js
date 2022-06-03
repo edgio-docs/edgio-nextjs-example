@@ -62,6 +62,20 @@ const API_CACHE_HANDLER = ({ cache, proxy }) => {
 }
 
 module.exports = new Router()
+  .get(
+    {
+      headers: {
+        // Regex to catch multiple hostnames
+        // Any deployment will have a L0 permalink
+        // Don't allow Google bot to crawl it, read more on:
+        // https://docs.layer0.co/guides/cookbook#blocking-search-engine-crawlers
+        host: /layer0.link|layer0-perma.link/,
+      },
+    },
+    ({ setResponseHeader }) => {
+      setResponseHeader('x-robots-tag', 'noindex')
+    },
+  )
   // Pre-render the static home page
   // By pre-rendering, once the project is deployed
   // the set of links are visited to warm the cache
