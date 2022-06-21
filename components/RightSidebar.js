@@ -6,19 +6,19 @@ const listingItems = {
   Relevance: [
     {
       name: 'Trending',
-      route: '/commerce',
+      route: '/commerce/trending',
     },
     {
       name: 'Latest Arrivals',
-      route: '/commerce',
+      route: '/commerce/latest-arrivals',
     },
     {
       name: 'Price: Low to High',
-      route: '/commerce',
+      route: '/commerce/price-low-to-high',
     },
     {
       name: 'Price: High to Low',
-      route: '/commerce',
+      route: '/commerce/price-high-to-low',
     },
   ],
 }
