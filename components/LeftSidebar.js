@@ -34,11 +34,11 @@ const LeftSidebar = () => {
     <div className="flex w-full flex-col">
       {Object.keys(listingItems).map((item, index) => (
         <Fragment key={item}>
-          <h2 className={classNames({ 'mt-10': index > 0 }, 'text-black', 'text-lg', 'font-medium')}>{item}</h2>
+          <h2 className={classNames({ 'mt-10': index > 0 }, 'text-white', 'text-lg', 'font-medium')}>{item}</h2>
           {listingItems[item].map((subItem) => (
             <Link passHref key={subItem.name} href={subItem.route}>
               <a>
-                <h3 className="text-md mt-2 font-light text-gray-500">{subItem.name}</h3>
+                <h3 className="text-md mt-2 font-light text-[#FFFFFF75]">{subItem.name}</h3>
               </a>
             </Link>
           ))}

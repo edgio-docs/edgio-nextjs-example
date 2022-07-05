@@ -19,7 +19,7 @@ const MyApp = ({ Component, pageProps }) => {
   }, [])
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col bg-gradient-to-br from-[#9a1ab1] via-[#004966] to-[#01B18D] min-h-screen">
       <Navbar />
       <Component {...pageProps} />
     </div>

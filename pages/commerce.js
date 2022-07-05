@@ -55,7 +55,7 @@ const Search = ({ data }) => {
           <LeftSidebar />
         </div>
         <div className="flex w-full flex-col items-start pt-5 md:w-[70%]">
-          <h2>Showing {data.length} Results</h2>
+          <h2 className="text-[#FFFFFF75]">Showing {data.length} Results</h2>
           <div className="mt-5 flex flex-row flex-wrap items-start">
             {data.map((i) => (
               <ProductPreview key={i.path} {...i} />
