@@ -14,7 +14,7 @@ const Navbar = () => {
       </div>
       <Link className="order-1 md:order-2" href="/">
         <a>
-          <img src="/logo-white.svg" className="h-[25px] w-auto" loading="lazy" />
+          <img src="/logo/white.svg" className="h-[25px] w-auto" loading="lazy" />
         </a>
       </Link>
       <div className="order-3 hidden flex-row items-center space-x-4 py-1 md:flex">
