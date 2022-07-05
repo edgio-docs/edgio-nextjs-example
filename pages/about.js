@@ -1,6 +1,6 @@
 const About = () => {
   return (
-    <div className="flex min-h-[70vh] flex-col items-center px-5 md:px-0">
+    <div className="flex min-h-[calc(100vh-56px)] flex-col items-center px-5 md:px-0">
       <div className="mt-10 flex w-full max-w-2xl flex-col p-2.5">
         <span className="text-2xl font-semibold text-white">About</span>
         <span className="mt-3 text-lg text-[#FFFFFF75]">This demo of Layer0 showcases the following:</span>

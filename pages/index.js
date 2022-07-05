@@ -1,6 +1,6 @@
 const Home = () => {
   return (
-    <div className="flex min-h-[70vh] flex-col items-center justify-center px-5 md:px-0">
+    <div className="flex min-h-[calc(100vh-56px)] flex-col items-center justify-center px-5 md:px-0">
       <div className="flex w-full flex-row flex-wrap justify-center md:w-[700px]">
         <div className="flex w-[330px] flex-col items-start justify-start rounded p-5 md:w-1/2">
           <h1 className="text-xl font-bold text-white">Next.js with Layer0</h1>
