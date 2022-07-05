@@ -3,6 +3,7 @@ import '@/styles/globals.css'
 import { useEffect } from 'react'
 import Navbar from '@/components/Navbar'
 import { install } from '@layer0/prefetch/window'
+import installDevtools from '@layer0/devtools/install'
 
 // Include the RUM Analytics in the production build only
 if (process.env.NODE_ENV === 'production') {
@@ -13,6 +14,8 @@ const MyApp = ({ Component, pageProps }) => {
   useEffect(() => {
     // Enable service worker inside the window
     install()
+    // Enable devtools manually, instead of relying on defaults by Layer0
+    installDevtools()
   }, [])
 
   return (
