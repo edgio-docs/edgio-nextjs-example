@@ -1,8 +1,8 @@
 import Link from 'next/link'
 import NextImage from 'next/image'
 import { useState, useEffect } from 'react'
+import { relativizeURL } from '@/lib/helper'
 import { StarIcon } from '@heroicons/react/solid'
-import { relativizeURL, shimmer, toBase64 } from '@/lib/helper'
 import { HeartIcon, StarIcon as StarIconOutline } from '@heroicons/react/outline'
 
 const Product = ({ data }) => {

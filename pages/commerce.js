@@ -2,7 +2,6 @@ import Link from 'next/link'
 import { useEffect } from 'react'
 import NextImage from 'next/image'
 import { Prefetch } from '@layer0/react'
-import { shimmer, toBase64 } from '@/lib/helper'
 import { prefetch } from '@layer0/prefetch/window'
 import LeftSidebar from '@/components/LeftSidebar'
 import RightSidebar from '@/components/RightSidebar'
@@ -33,9 +32,7 @@ const ProductPreview = ({ name, path, images, prices }) => {
             width={1200}
             height={1200}
             quality={100}
-            placeholder="blur"
             src={images[0].url}
-            blurDataURL={`data:image/svg+xml;base64,${toBase64(shimmer(1400, 720))}`}
           />
         </a>
       </Prefetch>
