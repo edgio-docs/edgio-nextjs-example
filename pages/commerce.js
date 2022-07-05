@@ -2,12 +2,12 @@ import Link from 'next/link'
 import { useEffect } from 'react'
 import NextImage from 'next/image'
 import { Prefetch } from '@layer0/react'
+import { shimmer, toBase64 } from '@/lib/helper'
 import { prefetch } from '@layer0/prefetch/window'
 import LeftSidebar from '@/components/LeftSidebar'
 import RightSidebar from '@/components/RightSidebar'
 import { HeartIcon } from '@heroicons/react/outline'
 import { createNextDataURL } from '@layer0/next/client'
-import { shimmer, toBase64 } from '@/components/Shimmer'
 
 const ProductPreview = ({ name, path, images, prices }) => {
   const nonSlashPath = path.replace(/\//g, '')
@@ -50,7 +50,7 @@ const Search = ({ data }) => {
   }, [])
   return (
     <div className="flex-col items-center justify-start">
-      <div className="mb-5 flex w-full w-full flex-row items-start px-5">
+      <div className="mb-5 flex w-full flex-row items-start px-5">
         <div className="hidden w-[15%] pt-5 md:block">
           <LeftSidebar />
         </div>
@@ -73,8 +73,18 @@ const Search = ({ data }) => {
 export default Search
 
 export async function getServerSideProps({ req }) {
-  let origin = req.headers['host']
-  const resp = await fetch(`https://${origin}/l0-api/products/all`)
+  let origin
+  let hostURL = req.headers['host']
+  if (hostURL) {
+    hostURL = hostURL.replace('http://', '')
+    hostURL = hostURL.replace('https://', '')
+    if (hostURL.includes('localhost:')) {
+      origin = `http://${hostURL}`
+    } else {
+      origin = `https://${hostURL}`
+    }
+  }
+  const resp = await fetch(`${origin}/l0-api/products/all`)
   if (!resp.ok) {
     return {
       notFound: true,

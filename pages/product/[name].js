@@ -2,7 +2,7 @@ import Link from 'next/link'
 import NextImage from 'next/image'
 import { useState, useEffect } from 'react'
 import { StarIcon } from '@heroicons/react/solid'
-import { relativizeURL, shimmer, toBase64 } from '@/components/Shimmer'
+import { relativizeURL, shimmer, toBase64 } from '@/lib/helper'
 import { HeartIcon, StarIcon as StarIconOutline } from '@heroicons/react/outline'
 
 const Product = ({ data }) => {
@@ -23,7 +23,7 @@ const Product = ({ data }) => {
   return (
     <div className="flex w-full flex-col items-start">
       <div className="flex w-full flex-col items-start md:flex-row">
-        <div className="relative flex w-full w-full flex-col items-start bg-purple-700 md:w-[65%]">
+        <div className="relative flex w-full flex-col items-start bg-purple-700 md:w-[65%]">
           <div className="absolute top-0 left-0 flex flex-col items-start">
             <h3 className="bg-white py-2 px-4 text-2xl font-bold text-black">{data.name}</h3>
             <h4 className="bg-white py-2 px-4 text-lg text-black">{`$ ${data.prices.price.value} ${data.prices.price.currencyCode}`}</h4>
@@ -85,7 +85,12 @@ const Product = ({ data }) => {
           <div className="flex flex-row items-start overflow-x-scroll">
             {relatedProducts.map((i) => (
               <Link key={i.images[0].url} href={`/product${i.path}`}>
-                <img loading="lazy" key={i.images[0].url} src={relativizeURL(i.images[0].url)} className="h-auto w-[250px] cursor-pointer hover:bg-white" />
+                <img
+                  loading="lazy"
+                  key={i.images[0].url}
+                  src={relativizeURL(i.images[0].url)}
+                  className="h-auto w-[250px] cursor-pointer hover:bg-white"
+                />
               </Link>
             ))}
           </div>
@@ -99,9 +104,19 @@ const Product = ({ data }) => {
 export default Product
 
 export async function getServerSideProps({ req, params }) {
-  let origin = req.headers['host']
+  let origin
+  let hostURL = req.headers['host']
+  if (hostURL) {
+    hostURL = hostURL.replace('http://', '')
+    hostURL = hostURL.replace('https://', '')
+    if (hostURL.includes('localhost:')) {
+      origin = `http://${hostURL}`
+    } else {
+      origin = `https://${hostURL}`
+    }
+  }
   const slug = params.name
-  const resp = await fetch(`https://${origin}/l0-api/products/${slug}`)
+  const resp = await fetch(`${origin}/l0-api/products/${slug}`)
   if (!resp.ok) {
     return {
       notFound: true,
