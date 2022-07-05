@@ -74,7 +74,7 @@ module.exports = new Router()
     },
     ({ setResponseHeader }) => {
       setResponseHeader('x-robots-tag', 'noindex')
-    },
+    }
   )
   // Pre-render the static home page
   // By pre-rendering, once the project is deployed
@@ -82,6 +82,14 @@ module.exports = new Router()
   // for future visits (expected to be the first view for real users)
   // More on static prerendering: https://docs.layer0.co/guides/static_prerendering
   .prerender(getPathsToPrerender)
+  // Serve the old Layer0 predefined routes by the latest prefix
+  .match('/__xdn__/:path*', ({ redirect }) => {
+    redirect('/__layer0__/:path*', 301)
+  })
+  // Cache the Layer0 devtools css js and other assets served by L0 by default
+  .match('/__layer0__/:path*', ({ cache }) => {
+    cache({ edge: { maxAgeSeconds: 60 * 60 * 24 * 365 } })
+  })
   // Serve the compiled service worker with Layer0 prefetcher working
   .match('/service-worker.js', ({ serviceWorker }) => {
     return serviceWorker('.next/static/service-worker.js')
