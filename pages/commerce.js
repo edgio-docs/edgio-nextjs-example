@@ -23,10 +23,10 @@ const ProductPreview = ({ name, path, images, prices }) => {
           },
         })}
       >
-        <a className="relative mt-2 w-full border border-white bg-gray-100 p-1 sm:w-1/2 md:w-1/3">
+        <a className="relative mt-2 w-full border border-white p-1 sm:w-1/2 md:w-1/3">
           <div className="absolute top-0 left-0 z-10 flex flex-col items-start">
-            <h3 className="rounded bg-white py-2 px-4 text-xl font-medium text-black">{name}</h3>
-            <h4 className="text-md rounded bg-white py-2 px-4 text-black">{`$ ${prices.price.value} ${prices.price.currencyCode}`}</h4>
+            <h3 className="bg-white py-2 px-4 text-xl font-medium text-black">{name}</h3>
+            <h4 className="text-md bg-white py-2 px-4 text-black">{`$ ${prices.price.value} ${prices.price.currencyCode}`}</h4>
           </div>
           <HeartIcon className="absolute top-0 right-0 h-[30px] w-[30px] bg-white p-2" />
           <NextImage
