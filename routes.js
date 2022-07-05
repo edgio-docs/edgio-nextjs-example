@@ -94,6 +94,23 @@ module.exports = new Router()
   .match('/service-worker.js', ({ serviceWorker }) => {
     return serviceWorker('.next/static/service-worker.js')
   })
+  // Pages
+  .match('/commerce', ({ cache }) => {
+    cache({
+      edge: {
+        maxAgeSeconds: 60 * 60 * 24,
+        staleWhileRevalidateSeconds: 60 * 60,
+      },
+    })
+  })
+  .match('/product/:path', ({ cache }) => {
+    cache({
+      edge: {
+        maxAgeSeconds: 60 * 60 * 24,
+        staleWhileRevalidateSeconds: 60 * 60,
+      },
+    })
+  })
   // The data in Next.js comes through _next/data/project-build-id route.
   // For the route /product/product-slug, cache this SSR route's data
   // it on the edge so that can be prefetched
