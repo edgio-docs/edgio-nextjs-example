@@ -101,6 +101,7 @@ module.exports = new Router()
   .match('/_next/data/:build/commerce.json', NEXT_CACHE_HANDLER)
   .match('/_next/data/:build/product/:id.json', NEXT_CACHE_HANDLER)
   // Asset caching
+  .match('/logo/:path*', ASSET_CACHE_HANDLER)
   .match('/_next/image/:path*', ASSET_CACHE_HANDLER)
   // API (Any backend) caching
   .match('/l0-api/:path*', API_CACHE_HANDLER)
