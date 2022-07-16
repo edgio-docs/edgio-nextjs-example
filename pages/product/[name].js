@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { useState, useEffect } from 'react'
-import { relativizeURL } from '@/lib/helper'
 import { StarIcon } from '@heroicons/react/solid'
+import { relativizeURL, getOrigin } from '@/lib/helper'
 import { HeartIcon, StarIcon as StarIconOutline } from '@heroicons/react/outline'
 
 const Product = ({ data }) => {
@@ -29,7 +29,7 @@ const Product = ({ data }) => {
           </div>
           <HeartIcon className="absolute top-0 right-0 h-[50px] w-[50px] bg-white p-2" />
           <div className="relative flex h-[600px] w-full flex-col items-center">
-            <img src={relativizeURL(data.images[selectedImage].url)} className="object-contain h-auto w-full max-w-[600px]" />
+            <img src={relativizeURL(data.images[selectedImage].url)} className="h-auto w-full max-w-[600px] object-contain" />
           </div>
           <div className="product-thumbnails flex flex-row items-start overflow-x-scroll">
             {data.images.map((i, ind) => (
@@ -107,19 +107,8 @@ const Product = ({ data }) => {
 export default Product
 
 export async function getServerSideProps({ req, params }) {
-  let origin
-  let hostURL = req.headers['host']
-  if (hostURL) {
-    hostURL = hostURL.replace('http://', '')
-    hostURL = hostURL.replace('https://', '')
-    if (hostURL.includes('localhost:')) {
-      origin = `http://${hostURL}`
-    } else {
-      origin = `https://${hostURL}`
-    }
-  }
   const slug = params.name
-  const resp = await fetch(`${origin}/l0-api/products/${slug}`)
+  const resp = await fetch(`${getOrigin(req)}/l0-api/products/${slug}`)
   if (!resp.ok) {
     return {
       notFound: true,
