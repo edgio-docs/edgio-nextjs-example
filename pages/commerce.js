@@ -1,7 +1,8 @@
 import Link from 'next/link'
 import { useEffect } from 'react'
-import NextImage from 'next/image'
+import { useRouter } from 'next/router'
 import { Prefetch } from '@layer0/react'
+import { relativizeURL } from '@/lib/helper'
 import { prefetch } from '@layer0/prefetch/window'
 import LeftSidebar from '@/components/LeftSidebar'
 import RightSidebar from '@/components/RightSidebar'
@@ -28,12 +29,7 @@ const ProductPreview = ({ name, path, images, prices }) => {
             <h4 className="text-md bg-white py-2 px-4 text-black">{`$ ${prices.price.value} ${prices.price.currencyCode}`}</h4>
           </div>
           <HeartIcon className="absolute top-0 right-0 h-[30px] w-[30px] bg-white p-2" />
-          <NextImage
-            width={1200}
-            height={1200}
-            quality={100}
-            src={images[0].url}
-          />
+          <img loading="lazy" width={1200} height={1200} src={relativizeURL(images[0].url)} />
         </a>
       </Prefetch>
     </Link>
@@ -41,10 +37,17 @@ const ProductPreview = ({ name, path, images, prices }) => {
 }
 
 const Search = ({ data }) => {
+  const router = useRouter()
+
   // Prefetch the API call on PDP as soon as the page mounts
   useEffect(() => {
     prefetch('/l0-api/products/all')
   }, [])
+
+  useEffect(() => {
+    console.log(router.pathname)
+  }, [router.pathname])
+
   return (
     <div className="flex-col items-center justify-start">
       <div className="mb-5 flex w-full flex-row items-start px-5">

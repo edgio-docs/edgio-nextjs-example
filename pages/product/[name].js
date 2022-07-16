@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import NextImage from 'next/image'
 import { useState, useEffect } from 'react'
 import { relativizeURL } from '@/lib/helper'
 import { StarIcon } from '@heroicons/react/solid'
@@ -30,7 +29,7 @@ const Product = ({ data }) => {
           </div>
           <HeartIcon className="absolute top-0 right-0 h-[50px] w-[50px] bg-white p-2" />
           <div className="relative flex h-[600px] w-full flex-col items-center">
-            <NextImage layout="fill" objectFit="contain" src={data.images[selectedImage].url} className="h-auto w-full max-w-[600px]" />
+            <img src={relativizeURL(data.images[selectedImage].url)} className="object-contain h-auto w-full max-w-[600px]" />
           </div>
           <div className="product-thumbnails flex flex-row items-start overflow-x-scroll">
             {data.images.map((i, ind) => (

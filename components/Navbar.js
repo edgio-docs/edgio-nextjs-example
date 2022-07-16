@@ -1,19 +1,27 @@
 import Link from 'next/link'
+import Prefetch from '@layer0/react/Prefetch'
+import { createNextDataURL } from '@layer0/next/client'
 
 const Navbar = () => {
   return (
     <div className="flex flex-row flex-wrap items-center justify-between py-3 px-5">
       <Link href="/">
-        <a>
-          <img src="/logo/white.svg" className="h-[25px] w-[60.2px] bg-white/5" />
-        </a>
+        <Prefetch url={createNextDataURL({ href: '/' })}>
+          <a>
+            <img src="/logo/white.svg" className="h-[25px] w-[60.2px] bg-white/5" />
+          </a>
+        </Prefetch>
       </Link>
       <div className="flex flex-row items-center space-x-4 py-1">
         <Link href="/about">
-          <a className="text-[#FFFFFF75]">About</a>
+          <Prefetch url={createNextDataURL({ href: '/about' })}>
+            <a className="text-[#FFFFFF75]">About</a>
+          </Prefetch>
         </Link>
         <Link href="/commerce">
-          <a className="text-[#FFFFFF75]">Commerce</a>
+          <Prefetch url={createNextDataURL({ href: '/commerce' })}>
+            <a className="text-[#FFFFFF75]">Commerce</a>
+          </Prefetch>
         </Link>
         <a href="https://github.com/layer0-docs/layer0-nextjs-example" target="_blank">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" className="fill-[#FFFFFF75]" viewBox="0 0 16 16">

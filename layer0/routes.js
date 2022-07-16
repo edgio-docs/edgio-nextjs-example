@@ -1,6 +1,5 @@
-import { nextRoutes } from '@layer0/next'
 import { Router } from '@layer0/core/router'
-import getPathsToPrerender from 'prerenderRequests'
+import getPathsToPrerender from '@/layer0/prerenderRequests'
 
 const ASSET_CACHE_HANDLER = ({ removeUpstreamResponseHeader, cache }) => {
   // Remove the cache-control header coming in from the Next.js app,
@@ -92,7 +91,7 @@ module.exports = new Router()
   })
   // Serve the compiled service worker with Layer0 prefetcher working
   .match('/service-worker.js', ({ serviceWorker }) => {
-    return serviceWorker('.next/static/service-worker.js')
+    serviceWorker('dist/service-worker.js')
   })
   // Pages
   .match('/commerce', ({ cache }) => {
@@ -114,13 +113,13 @@ module.exports = new Router()
   // The data in Next.js comes through _next/data/project-build-id route.
   // For the route /product/product-slug, cache this SSR route's data
   // it on the edge so that can be prefetched
-  .match('/_next/data/:build/index.json', NEXT_CACHE_HANDLER)
-  .match('/_next/data/:build/commerce.json', NEXT_CACHE_HANDLER)
-  .match('/_next/data/:build/product/:id.json', NEXT_CACHE_HANDLER)
+  .match('/_next/data/:path*', NEXT_CACHE_HANDLER)
   // Asset caching
   .match('/logo/:path*', ASSET_CACHE_HANDLER)
-  .match('/_next/image/:path*', ASSET_CACHE_HANDLER)
+  .match('/_next/static/:path*', ASSET_CACHE_HANDLER)
   // API (Any backend) caching
   .match('/l0-api/:path*', API_CACHE_HANDLER)
   // Use the default set of Next.js routes
-  .use(nextRoutes)
+  .fallback(({ renderWithApp }) => {
+    renderWithApp()
+  })

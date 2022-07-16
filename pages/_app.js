@@ -1,6 +1,6 @@
-import Layer0RUM from 'rum'
 import '@/styles/globals.css'
 import { useEffect } from 'react'
+import Layer0RUM from '@/layer0/rum'
 import Navbar from '@/components/Navbar'
 import { install } from '@layer0/prefetch/window'
 import installDevtools from '@layer0/devtools/install'
