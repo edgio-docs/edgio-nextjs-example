@@ -7,7 +7,12 @@ export const API_CACHE_HANDLER = ({ cache, proxy }) => {
       // https://docs.layer0.co/docs/api/core/interfaces/_router_cacheoptions_.edgecacheoptions.html#forceprivatecaching
       forcePrivateCaching: true,
     },
-    browser: false,
+    browser: {
+      // Don't save the response in the browser
+      maxAgeSeconds: 0,
+      // Save the response in the browser via Layer0 service worker
+      serviceWorkerSeconds: 60 * 60 * 24,
+    },
   })
   proxy('api', { path: ':path*' })
 }
