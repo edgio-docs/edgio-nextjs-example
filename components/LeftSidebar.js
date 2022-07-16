@@ -5,26 +5,20 @@ import classNames from 'classnames'
 const listingItems = {
   'All Categories': [
     {
-      name: 'Apparel',
-      route: '/commerce/apparel',
+      name: 'Joggers',
+      route: '/commerce/joggers',
+    },
+    {
+      name: 'Jackets',
+      route: '/commerce/jackets',
+    },
+    {
+      name: 'T-Shirts',
+      route: '/commerce/t-shirts',
     },
     {
       name: 'Shop All',
       route: '/commerce/shop-all',
-    },
-  ],
-  'All Designers': [
-    {
-      name: 'Sagaform',
-      route: '/commerce/sagaform',
-    },
-    {
-      name: 'OFS',
-      route: '/commerce/ofs',
-    },
-    {
-      name: 'ACME',
-      route: '/commerce/acme',
     },
   ],
 }

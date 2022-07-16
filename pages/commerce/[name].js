@@ -54,7 +54,7 @@ const Search = ({ data }) => {
           <h2 className="text-[#FFFFFF75]">Showing {data.length} Results</h2>
           <div className="mt-5 flex flex-row flex-wrap items-start">
             {filterProducts(data, router.query.filter).map((i) => (
-              <ProductPreview key={i.path} {...i} />
+              <ProductPreview key={i.price.value} {...i} />
             ))}
           </div>
         </div>
@@ -68,7 +68,7 @@ const Search = ({ data }) => {
 
 export default Search
 
-export async function getServerSideProps({ req }) {
+export async function getServerSideProps({ req, params }) {
   let origin
   let hostURL = req.headers['host']
   if (hostURL) {
@@ -86,7 +86,14 @@ export async function getServerSideProps({ req }) {
       notFound: true,
     }
   }
-  const data = await resp.json()
+  let data = await resp.json()
+  if (params.name === 'jackets') {
+    data = data.filter((i) => i.name.toLowerCase().includes('jacket'))
+  } else if (params.name === 't-shirts') {
+    data = data.filter((i) => i.name.toLowerCase().includes('t-shirt'))
+  } else if (params.name === 'joggers') {
+    data = data.filter((i) => i.name.toLowerCase().includes('jogger'))
+  }
   return {
     props: { data },
   }

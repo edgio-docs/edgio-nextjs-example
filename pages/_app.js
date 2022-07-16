@@ -1,6 +1,7 @@
 import '@/styles/globals.css'
 import { useEffect } from 'react'
 import Layer0RUM from '@/layer0/rum'
+import { useRouter } from 'next/router'
 import Navbar from '@/components/Navbar'
 import { install } from '@layer0/prefetch/window'
 import installDevtools from '@layer0/devtools/install'
@@ -11,6 +12,7 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 const MyApp = ({ Component, pageProps }) => {
+  const router = useRouter()
   if (process.env.NODE_ENV === 'production') {
     useEffect(() => {
       // Enable service worker inside the window
@@ -22,7 +24,7 @@ const MyApp = ({ Component, pageProps }) => {
   return (
     <div className="flex min-h-screen flex-col bg-gradient-to-br from-[#9a1ab1] via-[#004966] to-[#01B18D]">
       <Navbar />
-      <Component {...pageProps} />
+      <Component key={router.asPath} {...pageProps} />
     </div>
   )
 }
