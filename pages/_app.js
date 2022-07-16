@@ -11,15 +11,16 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 const MyApp = ({ Component, pageProps }) => {
-  useEffect(() => {
-    // Enable service worker inside the window
-    install()
-    // Enable devtools manually, instead of relying on defaults by Layer0
-    installDevtools()
-  }, [])
-
+  if (process.env.NODE_ENV === 'production') {
+    useEffect(() => {
+      // Enable service worker inside the window
+      install()
+      // Enable devtools manually, instead of relying on defaults by Layer0
+      installDevtools()
+    }, [])
+  }
   return (
-    <div className="flex flex-col bg-gradient-to-br from-[#9a1ab1] via-[#004966] to-[#01B18D] min-h-screen">
+    <div className="flex min-h-screen flex-col bg-gradient-to-br from-[#9a1ab1] via-[#004966] to-[#01B18D]">
       <Navbar />
       <Component {...pageProps} />
     </div>

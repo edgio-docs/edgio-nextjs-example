@@ -4,7 +4,7 @@ const About = ({ showcases }) => {
       <div className="mt-10 flex w-full max-w-2xl flex-col p-2.5">
         <span className="text-2xl font-semibold text-white">About</span>
         <span className="mt-5 text-lg text-[#FFFFFF75]">This demo of Layer0 showcases the following:</span>
-        <ul class="list-disc">
+        <ul className="list-disc">
           {showcases.map((i) => (
             <li key={i} className="mt-3 text-[#FFFFFF75]">
               {i}

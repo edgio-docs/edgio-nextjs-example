@@ -1,4 +1,5 @@
 import { Router } from '@layer0/core/router'
+import { BACKENDS } from '@layer0/core/constants'
 import getPathsToPrerender from '@/layer0/prerenderRequests'
 
 const ASSET_CACHE_HANDLER = ({ removeUpstreamResponseHeader, cache }) => {
@@ -60,7 +61,7 @@ const API_CACHE_HANDLER = ({ cache, proxy }) => {
   proxy('api', { path: ':path*' })
 }
 
-module.exports = new Router()
+const router = new Router()
   .get(
     {
       headers: {
@@ -93,23 +94,6 @@ module.exports = new Router()
   .match('/service-worker.js', ({ serviceWorker }) => {
     serviceWorker('dist/service-worker.js')
   })
-  // Pages
-  .match('/commerce', ({ cache }) => {
-    cache({
-      edge: {
-        maxAgeSeconds: 60 * 60 * 24,
-        staleWhileRevalidateSeconds: 60 * 60,
-      },
-    })
-  })
-  .match('/product/:path', ({ cache }) => {
-    cache({
-      edge: {
-        maxAgeSeconds: 60 * 60 * 24,
-        staleWhileRevalidateSeconds: 60 * 60,
-      },
-    })
-  })
   // The data in Next.js comes through _next/data/project-build-id route.
   // For the route /product/product-slug, cache this SSR route's data
   // it on the edge so that can be prefetched
@@ -120,6 +104,8 @@ module.exports = new Router()
   // API (Any backend) caching
   .match('/l0-api/:path*', API_CACHE_HANDLER)
   // Use the default set of Next.js routes
-  .fallback(({ renderWithApp }) => {
-    renderWithApp()
+  .fallback(({ proxy }) => {
+    proxy(BACKENDS.js)
   })
+
+export default router
