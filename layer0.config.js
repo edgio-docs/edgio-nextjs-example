@@ -11,5 +11,11 @@ module.exports = {
       // https://docs.layer0.co/guides/layer0_config#:~:text=browser%20is%20used.-,disableCheckCert,-Boolean
       disableCheckCert: true,
     },
+    // More on: https://docs.layer0.co/guides/image_optimization
+    image: {
+      domainOrIp: 'opt.moovweb.net',
+      hostHeader: 'opt.moovweb.net',
+      disableCheckCert: true,
+    },
   },
 }

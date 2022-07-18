@@ -1,7 +1,7 @@
 import { Router } from '@layer0/core/router'
 import { BACKENDS } from '@layer0/core/constants'
 import getPathsToPrerender from '@/layer0/prerenderRequests'
-import { API_CACHE_HANDLER, ASSET_CACHE_HANDLER, NEXT_CACHE_HANDLER } from './cache'
+import { API_CACHE_HANDLER, ASSET_CACHE_HANDLER, NEXT_CACHE_HANDLER, IMAGE_CACHE_HANDLER } from './cache'
 
 const router = new Router()
   .get(
@@ -45,6 +45,8 @@ const router = new Router()
   .match('/_next/static/:path*', ASSET_CACHE_HANDLER)
   // API (Any backend) caching
   .match('/l0-api/:path*', API_CACHE_HANDLER)
+  // Image caching
+  .match('/l0-opt', IMAGE_CACHE_HANDLER)
   // Use the default set of Next.js routes
   .fallback(({ proxy }) => {
     proxy(BACKENDS.js)
