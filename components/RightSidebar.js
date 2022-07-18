@@ -21,6 +21,7 @@ const listingItems = {
 
 const RightSidebar = ({}) => {
   const router = useRouter()
+  const { filter } = router.query
   return (
     <div className="flex w-full flex-col pl-5">
       {Object.keys(listingItems).map((item, index) => (
@@ -40,7 +41,15 @@ const RightSidebar = ({}) => {
                 }
               }}
             >
-              <h3 className="text-md mt-2 font-light text-[#FFFFFF75]">{subItem.name}</h3>
+              <h3
+                className={classNames(
+                  'text-md mt-2',
+                  { 'font-light text-[#FFFFFF75]': filter !== subItem.filter },
+                  { 'font-medium text-[#FFFFFF]': filter === subItem.filter }
+                )}
+              >
+                {subItem.name}
+              </h3>
             </a>
           ))}
         </Fragment>
