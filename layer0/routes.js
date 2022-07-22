@@ -46,6 +46,7 @@ const router = new Router()
   .match('/l0-api/:path*', API_CACHE_HANDLER)
   // Image caching
   .match('/l0-opt', IMAGE_CACHE_HANDLER)
+  .static('public')
   // Use the default set of Next.js routes
   .fallback(({ renderWithApp }) => {
     renderWithApp()
