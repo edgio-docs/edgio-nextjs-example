@@ -13,7 +13,6 @@ module.exports = async function build(options) {
     await builder.exec(command)
     builder.addJSAsset(join(appDir, '.next', 'standalone'), 'dist')
     builder.addJSAsset(join(appDir, '.next', 'static'), join('dist', '.next', 'static'))
-    builder.addStaticAsset(join(appDir, 'public'), 'public')
     esbuild.buildSync({
       entryPoints: [`${appDir}/sw/service-worker.js`],
       outfile: `${builder.staticAssetsDir}/dist/service-worker.js`,
