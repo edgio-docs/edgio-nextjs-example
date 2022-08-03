@@ -39,20 +39,13 @@ const Search = ({ data }) => {
 export default Search
 
 export async function getServerSideProps({ req, params }) {
-  const resp = await fetch(`${getOrigin(req)}/l0-api/products/all`)
+  const resp = await fetch(`${getOrigin(req)}/l0-api/categories/${params.name}`)
   if (!resp.ok) {
     return {
       notFound: true,
     }
   }
-  let data = await resp.json()
-  if (params.name === 'jackets') {
-    data = data.filter((i) => i.name.toLowerCase().includes('jacket'))
-  } else if (params.name === 't-shirts') {
-    data = data.filter((i) => i.name.toLowerCase().includes('t-shirt'))
-  } else if (params.name === 'joggers') {
-    data = data.filter((i) => i.name.toLowerCase().includes('jogger'))
-  }
+  let data = (await resp.json())['items']
   return {
     props: { data },
   }
