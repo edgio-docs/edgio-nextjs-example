@@ -23,7 +23,7 @@ const Product = ({ data }) => {
     <div className="flex w-full flex-col items-start">
       <div className="flex w-full flex-col items-start md:flex-row">
         <div className="relative flex w-full flex-col items-start md:w-[65%]">
-          <div className="absolute top-0 left-0 flex flex-col items-start">
+          <div className="absolute z-50 top-0 left-0 flex flex-col items-start">
             <h3 className="bg-white py-2 px-4 text-2xl font-bold text-black">{data.name}</h3>
             <h4 className="bg-white py-2 px-4 text-lg text-black">{`$ ${data.prices.price.value} ${data.prices.price.currencyCode}`}</h4>
           </div>
