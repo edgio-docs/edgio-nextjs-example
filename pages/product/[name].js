@@ -1,8 +1,7 @@
 import Link from 'next/link'
-import NextImage from 'next/image'
 import { useState, useEffect } from 'react'
-import { relativizeURL } from '@/lib/helper'
 import { StarIcon } from '@heroicons/react/solid'
+import { relativizeURL, getOrigin } from '@/lib/helper'
 import { HeartIcon, StarIcon as StarIconOutline } from '@heroicons/react/outline'
 
 const Product = ({ data }) => {
@@ -24,15 +23,15 @@ const Product = ({ data }) => {
     <div className="flex w-full flex-col items-start">
       <div className="flex w-full flex-col items-start md:flex-row">
         <div className="relative flex w-full flex-col items-start md:w-[65%]">
-          <div className="absolute top-0 left-0 flex flex-col items-start">
+          <div className="absolute z-50 top-0 left-0 flex flex-col items-start">
             <h3 className="bg-white py-2 px-4 text-2xl font-bold text-black">{data.name}</h3>
             <h4 className="bg-white py-2 px-4 text-lg text-black">{`$ ${data.prices.price.value} ${data.prices.price.currencyCode}`}</h4>
           </div>
           <HeartIcon className="absolute top-0 right-0 h-[50px] w-[50px] bg-white p-2" />
-          <div className="relative flex h-[600px] w-full flex-col items-center">
-            <NextImage layout="fill" objectFit="contain" src={data.images[selectedImage].url} className="h-auto w-full max-w-[600px]" />
+          <div className="relative flex w-full flex-col items-center">
+            <img src={relativizeURL(data.images[selectedImage].url)} className="h-auto w-full max-w-[600px] object-contain" />
           </div>
-          <div className="product-thumbnails flex flex-row items-start overflow-x-scroll">
+          <div className="product-thumbnails mt-5 flex flex-row items-start gap-x-2 overflow-x-scroll">
             {data.images.map((i, ind) => (
               <img
                 key={i.url}
@@ -41,7 +40,7 @@ const Product = ({ data }) => {
                 onClick={() => {
                   setSelectedImage(ind)
                 }}
-                className="h-[250px] w-auto cursor-pointer hover:bg-white"
+                className="h-[250px] w-auto cursor-pointer object-cover hover:bg-white"
               />
             ))}
           </div>
@@ -75,14 +74,14 @@ const Product = ({ data }) => {
       {relatedProducts.length && (
         <div className="relative mt-10 flex w-full flex-col">
           <h1 className="px-5 text-2xl font-bold text-[#FFFFFF75]">Related Products</h1>
-          <div className="product-thumbnails flex flex-row items-start overflow-x-scroll">
+          <div className="product-thumbnails mt-5 flex flex-row items-start gap-x-2 overflow-x-scroll">
             {relatedProducts.map((i) => (
               <Link key={i.images[0].url} href={`/product${i.path}`}>
                 <img
                   loading="lazy"
                   key={i.images[0].url}
                   src={relativizeURL(i.images[0].url)}
-                  className="h-auto w-[250px] cursor-pointer hover:bg-white"
+                  className="h-[250px] w-auto cursor-pointer object-cover hover:bg-white"
                 />
               </Link>
             ))}
@@ -108,19 +107,8 @@ const Product = ({ data }) => {
 export default Product
 
 export async function getServerSideProps({ req, params }) {
-  let origin
-  let hostURL = req.headers['host']
-  if (hostURL) {
-    hostURL = hostURL.replace('http://', '')
-    hostURL = hostURL.replace('https://', '')
-    if (hostURL.includes('localhost:')) {
-      origin = `http://${hostURL}`
-    } else {
-      origin = `https://${hostURL}`
-    }
-  }
   const slug = params.name
-  const resp = await fetch(`${origin}/l0-api/products/${slug}`)
+  const resp = await fetch(`${getOrigin(req)}/l0-api/products/${slug}`)
   if (!resp.ok) {
     return {
       notFound: true,

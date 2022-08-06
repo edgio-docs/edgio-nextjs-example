@@ -35,6 +35,7 @@ yarn-error.log*
 
 # Layer0 generated build directory
 .layer0
-dist
-.yalc
-yalc.lock
+.swc
+
+dist # Layer0 generated build directory
+.layer0

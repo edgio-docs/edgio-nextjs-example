@@ -3,8 +3,8 @@ import { useRouter } from 'next/router'
 import { prefetch } from '@layer0/prefetch/window'
 import LeftSidebar from '@/components/LeftSidebar'
 import RightSidebar from '@/components/RightSidebar'
-import ProductPreview from '@/components/ProductPreview'
 import { filterProducts, getOrigin } from '@/lib/helper'
+import ProductPreview from '@/components/ProductPreview'
 
 const Search = ({ data }) => {
   const router = useRouter()
@@ -24,7 +24,7 @@ const Search = ({ data }) => {
           <h2 className="text-[#FFFFFF75]">Showing {data.length} Results</h2>
           <div className="mt-5 flex flex-row flex-wrap items-start">
             {filterProducts(data, router.query.filter).map((i) => (
-              <ProductPreview key={i.path} {...i} />
+              <ProductPreview key={i.price.value} {...i} />
             ))}
           </div>
         </div>
@@ -38,14 +38,14 @@ const Search = ({ data }) => {
 
 export default Search
 
-export async function getServerSideProps({ req }) {
-  const resp = await fetch(`${getOrigin(req)}/l0-api/products/all`)
+export async function getServerSideProps({ req, params }) {
+  const resp = await fetch(`${getOrigin(req)}/l0-api/categories/${params.name}`)
   if (!resp.ok) {
     return {
       notFound: true,
     }
   }
-  const data = await resp.json()
+  let data = (await resp.json())['items']
   return {
     props: { data },
   }

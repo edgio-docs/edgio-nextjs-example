@@ -1,47 +1,54 @@
 import Link from 'next/link'
-import { Fragment } from 'react'
 import classNames from 'classnames'
-
-const listingItems = {
-  'All Categories': [
-    {
-      name: 'Apparel',
-      route: '/commerce/apparel',
-    },
-    {
-      name: 'Shop All',
-      route: '/commerce/shop-all',
-    },
-  ],
-  'All Designers': [
-    {
-      name: 'Sagaform',
-      route: '/commerce/sagaform',
-    },
-    {
-      name: 'OFS',
-      route: '/commerce/ofs',
-    },
-    {
-      name: 'ACME',
-      route: '/commerce/acme',
-    },
-  ],
-}
+import { useRouter } from 'next/router'
+import { Fragment, useEffect, useState } from 'react'
 
 const LeftSidebar = () => {
+  const router = useRouter()
+  const [listingItems, setListingItems] = useState([])
+  const [pathWithoutQuery, setPathWithoutQuery] = useState(router.asPath)
+  useEffect(() => {
+    let temp = router.asPath
+    if (temp.includes('?')) setPathWithoutQuery(temp.substring(0, temp.indexOf('?')))
+    else setPathWithoutQuery(temp)
+  }, [router.asPath])
+  useEffect(() => {
+    fetch('/l0-api/categories/all')
+      .then((res) => res.json())
+      .then((res) => {
+        setListingItems(res)
+      })
+  }, [])
   return (
     <div className="flex w-full flex-col">
-      {Object.keys(listingItems).map((item, index) => (
-        <Fragment key={item}>
-          <h2 className={classNames({ 'mt-10': index > 0 }, 'text-white', 'text-lg', 'font-medium')}>{item}</h2>
-          {listingItems[item].map((subItem) => (
-            <Link passHref key={subItem.name} href={subItem.route}>
-              <a>
-                <h3 className="text-md mt-2 font-light text-[#FFFFFF75]">{subItem.name}</h3>
-              </a>
-            </Link>
-          ))}
+      <Link passHref href={`/commerce`}>
+        <a>
+          <h3
+            className={classNames(
+              'text-md',
+              { 'font-light text-[#FFFFFF75]': pathWithoutQuery !== `/commerce` },
+              { 'font-medium text-[#FFFFFF]': pathWithoutQuery === `/commerce` }
+            )}
+          >
+            Shop All
+          </h3>
+        </a>
+      </Link>
+      {listingItems.map((item) => (
+        <Fragment key={item.slug}>
+          <Link passHref href={`/commerce/${item.slug}`}>
+            <a>
+              <h3
+                className={classNames(
+                  'text-md mt-2',
+                  { 'font-light text-[#FFFFFF75]': pathWithoutQuery !== `/commerce/${item.slug}` },
+                  { 'font-medium text-[#FFFFFF]': pathWithoutQuery === `/commerce/${item.slug}` }
+                )}
+              >
+                {item.name}
+              </h3>
+            </a>
+          </Link>
         </Fragment>
       ))}
     </div>

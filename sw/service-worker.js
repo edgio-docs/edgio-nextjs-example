@@ -19,7 +19,10 @@ new Prefetcher({
         jsonQuery: 'pageProps.data.images.url:relativize',
         jsonQueryOptions: {
           locals: {
-            relativize: (input) => input.filter((i) => i).map((i) => relativizeURL(i)),
+            relativize: (input) => {
+              if (input && input.length > 0) return input.filter((i) => i).map((i) => relativizeURL(i))
+              return ['/logo/white.svg']
+            },
           },
         },
         maxMatches: 6,
@@ -34,3 +37,4 @@ new Prefetcher({
   // Read more on caching cross-origin requests at
   // https://docs.layer0.co/docs/api/prefetch/classes/_sw_prefetcher_.prefetcher.html#cache
   .cache(/^https:\/\/(.*?)\.link\/.*/)
+  .cache(/^https:\/\/(.*?)\.net\/.*/)

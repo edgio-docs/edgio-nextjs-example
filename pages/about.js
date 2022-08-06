@@ -4,7 +4,7 @@ const About = ({ showcases }) => {
       <div className="mt-10 flex w-full max-w-2xl flex-col p-2.5">
         <span className="text-2xl font-semibold text-white">About</span>
         <span className="mt-5 text-lg text-[#FFFFFF75]">This demo of Layer0 showcases the following:</span>
-        <ul class="list-disc">
+        <ul className="list-disc">
           {showcases.map((i) => (
             <li key={i} className="mt-3 text-[#FFFFFF75]">
               {i}
@@ -33,9 +33,10 @@ export async function getStaticProps() {
   return {
     props: {
       showcases: [
-        `Layer0's Built-In Support for Next.js 12.1`,
+        `Layer0's Compatbility with Next.js 12.2`,
         'Static Pre-rendering with Layer0, to warm cache as soon as the app goes to production (or the cache is cleared)',
         '(Free) Real Time User Monitoring service offered by Layer0',
+        '(Free) Layer0 Image Optimization Service',
         'Edge and Browser caching of SSR page(s)',
         'Prefetching with Layer0 Service Worker to speeden up transitions',
         'Proxying and Caching external API(s) for faster edge and browser responses',

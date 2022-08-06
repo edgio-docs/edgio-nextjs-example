@@ -1,40 +1,56 @@
-import Link from 'next/link'
 import { Fragment } from 'react'
 import classNames from 'classnames'
+import { useRouter } from 'next/router'
 
 const listingItems = {
   Relevance: [
     {
       name: 'Trending',
-      route: '/commerce/trending',
-    },
-    {
-      name: 'Latest Arrivals',
-      route: '/commerce/latest-arrivals',
+      filter: 'trending',
     },
     {
       name: 'Price: Low to High',
-      route: '/commerce/price-low-to-high',
+      filter: 'price-low-to-high',
     },
     {
       name: 'Price: High to Low',
-      route: '/commerce/price-high-to-low',
+      filter: 'price-high-to-low',
     },
   ],
 }
 
 const RightSidebar = ({}) => {
+  const router = useRouter()
+  const { filter } = router.query
   return (
     <div className="flex w-full flex-col pl-5">
       {Object.keys(listingItems).map((item, index) => (
         <Fragment key={item}>
           <h2 className={classNames({ 'mt-10': index > 0 }, 'text-white', 'text-lg', 'font-medium')}>{item}</h2>
           {listingItems[item].map((subItem) => (
-            <Link passHref key={subItem.name} href={subItem.route}>
-              <a>
-                <h3 className="text-md mt-2 font-light text-[#FFFFFF75]">{subItem.name}</h3>
-              </a>
-            </Link>
+            <a
+              key={subItem.name}
+              className="cursor-pointer"
+              onClick={(e) => {
+                e.preventDefault()
+                if (typeof window !== undefined) {
+                  router.push({
+                    pathname: window.location.pathname,
+                    query: { filter: subItem.filter },
+                  })
+                }
+              }}
+            >
+              <h3
+                className={classNames(
+                  'text-md mt-2',
+                  { 'font-light text-[#FFFFFF75]': filter !== subItem.filter },
+                  { 'font-medium text-[#FFFFFF]': filter === subItem.filter }
+                )}
+              >
+                {subItem.name}
+              </h3>
+            </a>
           ))}
         </Fragment>
       ))}
