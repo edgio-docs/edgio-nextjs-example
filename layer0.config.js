@@ -1,6 +1,8 @@
+// This file was automatically added by layer0 init.
+// You should commit this file to source control.
+// Learn more about this file at https://docs.layer0.co/guides/layer0_config
 module.exports = {
-  connector: './layer0',
-  routes: './layer0/routes.js',
+  connector: '@layer0/next',
   backends: {
     // Define a domain or IP address to proxy as a backend
     // More on: https://docs.layer0.co/guides/layer0_config#backends
