@@ -37,5 +37,5 @@ yarn-error.log*
 .layer0
 .swc
 
-dist# Layer0 generated build directory
+dist # Layer0 generated build directory
 .layer0
