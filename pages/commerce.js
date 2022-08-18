@@ -1,35 +1,24 @@
-import { useEffect } from 'react'
 import { useRouter } from 'next/router'
-import { prefetch } from '@layer0/prefetch/window'
-import LeftSidebar from '@/components/LeftSidebar'
-import RightSidebar from '@/components/RightSidebar'
+import Sidebar from '@/components/Sidebar'
 import ProductPreview from '@/components/ProductPreview'
 import { filterProducts, getOrigin } from '@/lib/helper'
 
 const Search = ({ data }) => {
   const router = useRouter()
 
-  // Prefetch the API call on PDP as soon as the page mounts
-  useEffect(() => {
-    prefetch('/l0-api/products/all')
-  }, [])
-
   return (
     <div className="flex-col items-center justify-start">
-      <div className="mb-5 flex w-full flex-row items-start px-5">
-        <div className="hidden w-[15%] pt-5 md:block">
-          <LeftSidebar />
+      <div className="flex w-full flex-row items-start px-5">
+        <div className="flex min-w-[200px] flex-col pt-5">
+          <Sidebar />
         </div>
-        <div className="flex w-full flex-col items-start pt-5 md:w-[70%]">
+        <div className="flex flex-col items-start pt-5">
           <h2 className="text-[#FFFFFF75]">Showing {data.length} Results</h2>
-          <div className="mt-5 flex flex-row flex-wrap items-start">
+          <div className="sm:grd-cols-2 mt-5 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6">
             {filterProducts(data, router.query.filter).map((i) => (
               <ProductPreview key={i.path} {...i} />
             ))}
           </div>
-        </div>
-        <div className="hidden w-[15%] pt-5 md:block">
-          <RightSidebar />
         </div>
       </div>
     </div>
@@ -38,14 +27,17 @@ const Search = ({ data }) => {
 
 export default Search
 
-export async function getServerSideProps({ req }) {
-  const resp = await fetch(`${getOrigin(req)}/l0-api/products/all`)
+export async function getServerSideProps({ req, query }) {
+  const resp = await fetch(`${getOrigin(req)}/l0-api/${query.name ? `categories/${query.name}` : 'products/all'}`)
   if (!resp.ok) {
     return {
       notFound: true,
     }
   }
-  const data = await resp.json()
+  let data = await resp.json()
+  if (query.name) {
+    data = data['items']
+  }
   return {
     props: { data },
   }
