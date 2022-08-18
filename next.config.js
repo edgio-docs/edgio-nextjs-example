@@ -1,9 +1,15 @@
-// This file was automatically added by layer0 init.
-// You should commit this file to source control.
 const { withLayer0, withServiceWorker } = require('@layer0/next/config')
 
 const _preLayer0Export = {
   output: 'standalone',
+  async rewrites() {
+    return [
+      {
+        source: '/commerce/:name',
+        destination: '/commerce',
+      },
+    ]
+  },
 }
 
 module.exports = (phase, config) =>
