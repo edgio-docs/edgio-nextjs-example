@@ -3,6 +3,7 @@
 // Learn more about this file at https://docs.layer0.co/guides/layer0_config
 module.exports = {
   connector: '@layer0/next',
+  routes: './layer0/routes.js',
   backends: {
     // Define a domain or IP address to proxy as a backend
     // More on: https://docs.layer0.co/guides/layer0_config#backends
