@@ -57,7 +57,7 @@ export const ASSET_CACHE_HANDLER = ({ removeUpstreamResponseHeader, cache }) => 
   })
 }
 
-export const NEXT_CACHE_HANDLER = ({ removeUpstreamResponseHeader, cache }) => {
+export const NEXT_CACHE_HANDLER = ({ removeUpstreamResponseHeader, cache, setResponseHeader }) => {
   // Remove the cache-control header coming in from the Next.js app,
   // this is to ensure that the response is cacheable
   removeUpstreamResponseHeader('cache-control')
@@ -79,4 +79,5 @@ export const NEXT_CACHE_HANDLER = ({ removeUpstreamResponseHeader, cache }) => {
       staleWhileRevalidateSeconds: 60 * 60 * 24,
     },
   })
+  setResponseHeader('cache-control', 'public, max-age=30, stale-while-revalidate=90')
 }
