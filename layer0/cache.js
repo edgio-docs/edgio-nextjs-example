@@ -57,18 +57,13 @@ export const ASSET_CACHE_HANDLER = ({ removeUpstreamResponseHeader, cache }) => 
   })
 }
 
-export const NEXT_CACHE_HANDLER = ({ removeUpstreamResponseHeader, cache }) => {
+export const NEXT_CACHE_HANDLER = ({ removeUpstreamResponseHeader, cache, renderWithApp, setResponseHeader }) => {
   // Remove the cache-control header coming in from the Next.js app,
   // this is to ensure that the response is cacheable
   removeUpstreamResponseHeader('cache-control')
   // Set the caching values
   cache({
-    browser: {
-      // Don't save the response in the browser
-      maxAgeSeconds: 0,
-      // Save the response in the browser via Layer0 service worker
-      serviceWorkerSeconds: 60 * 60 * 24,
-    },
+    browser: false,
     edge: {
       // Save the response(s) [whether stale or updated] in the edge POP for a year
       maxAgeSeconds: 60 * 60 * 24 * 365,
@@ -79,4 +74,6 @@ export const NEXT_CACHE_HANDLER = ({ removeUpstreamResponseHeader, cache }) => {
       staleWhileRevalidateSeconds: 60 * 60 * 24,
     },
   })
+  renderWithApp()
+  setResponseHeader('cache-control', 'public, max-age=30, stale-while-revalidate=90')
 }

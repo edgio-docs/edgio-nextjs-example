@@ -3,6 +3,8 @@ name: Deploy to Layer0
 on:
   workflow_dispatch:
   push:
+    branches:
+      - master
 
 jobs:
   deploy-to-layer0:
