@@ -1,14 +1,14 @@
 import '@/styles/globals.css'
 import { useEffect } from 'react'
-import Layer0RUM from '@/layer0/rum'
+import EdgioRUM from '@/edgio/rum'
 import { useRouter } from 'next/router'
 import Navbar from '@/components/Navbar'
-import { install } from '@layer0/prefetch/window'
-import installDevtools from '@layer0/devtools/install'
+import { install } from '@edgio/prefetch/window'
+import installDevtools from '@edgio/devtools/install'
 
 // Include the RUM Analytics in the production build only
 if (process.env.NODE_ENV === 'production') {
-  Layer0RUM('f3b82d21-7df8-46e4-8475-5f30ed585341')
+  EdgioRUM('f3b82d21-7df8-46e4-8475-5f30ed585341')
 }
 
 const MyApp = ({ Component, pageProps }) => {
@@ -16,7 +16,7 @@ const MyApp = ({ Component, pageProps }) => {
   useEffect(() => {
     // Enable service worker inside the window
     install()
-    // Enable devtools manually, instead of relying on defaults by Layer0
+    // Enable devtools manually, instead of relying on defaults by Edgio
     installDevtools()
   }, [])
   return (

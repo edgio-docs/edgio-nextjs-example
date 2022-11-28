@@ -1,6 +1,6 @@
-const { withLayer0, withServiceWorker } = require('@layer0/next/config')
+const { withEdgio, withServiceWorker } = require('@edgio/next/config')
 
-const _preLayer0Export = {
+const _preEdgioExport = {
   output: 'standalone',
   async rewrites() {
     return [
@@ -13,12 +13,12 @@ const _preLayer0Export = {
 }
 
 module.exports = (phase, config) =>
-  withLayer0(
+  withEdgio(
     withServiceWorker({
       // Output sourcemaps so that stack traces have original source filenames and line numbers when tailing
-      // the logs in the Layer0 developer console.
-      layer0SourceMaps: true,
+      // the logs in the Edgio developer console.
+      edgioSourceMaps: true,
 
-      ..._preLayer0Export,
+      ..._preEdgioExport,
     })
   )

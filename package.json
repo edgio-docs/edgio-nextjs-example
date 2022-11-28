@@ -1,13 +1,13 @@
 {
-  "name": "layer0-nextjs-example",
+  "name": "edgio-nextjs-example",
   "scripts": {
     "dev": "next",
     "build": "next build",
     "start": "next start",
-    "layer0:dev": "layer0 dev",
-    "layer0:build": "layer0 build",
-    "layer0:deploy": "layer0 deploy",
-    "layer0:production": "layer0 run --production",
+    "edgio:dev": "edgio dev",
+    "edgio:build": "edgio build",
+    "edgio:deploy": "edgio deploy",
+    "edgio:production": "edgio run --production",
     "format": "prettier '**/*' --write --ignore-unknown"
   },
   "dependencies": {
@@ -16,14 +16,14 @@
     "react-dom": "^18.0.1"
   },
   "devDependencies": {
+    "@edgio/cli": "^5.0.4",
+    "@edgio/core": "^5.0.4",
+    "@edgio/devtools": "^5.0.4",
+    "@edgio/next": "^5.0.4",
+    "@edgio/prefetch": "^5.0.4",
+    "@edgio/react": "^5.0.4",
+    "@edgio/rum": "^5.0.8",
     "@heroicons/react": "^1.0.6",
-    "@layer0/cli": "^4.18.2",
-    "@layer0/core": "^4.18.2",
-    "@layer0/devtools": "^4.18.2",
-    "@layer0/next": "^4.18.2",
-    "@layer0/prefetch": "^4.18.2",
-    "@layer0/react": "^4.18.2",
-    "@layer0/rum": "^3.1.0",
     "autoprefixer": "^10.4.7",
     "classnames": "^2.3.1",
     "node-fetch": "^3.2.8",
