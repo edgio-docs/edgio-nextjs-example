@@ -6,12 +6,6 @@ import { NEXT_CACHE_HANDLER, API_CACHE_HANDLER, IMAGE_CACHE_HANDLER } from './ca
 
 const router = new Router()
 
-// Regex to catch multiple hostnames
-// Any deployment will have a L0 permalink
-// Don't allow Google bot to crawl it, read more on:
-// https://docs.edgio.co/guides/cookbook#blocking-search-engine-crawlers
-router.noIndexPermalink()
-
 // Pre-render the static home page
 // By pre-rendering, once the project is deployed
 // the set of links are visited to warm the cache
