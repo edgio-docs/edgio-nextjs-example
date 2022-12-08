@@ -17,8 +17,10 @@ module.exports = (phase, config) =>
     withServiceWorker({
       // Output sourcemaps so that stack traces have original source filenames and line numbers when tailing
       // the logs in the Edgio developer console.
-      edgioSourceMaps: true,
-
+      edgioSourceMaps: false,
+      // Don't include Edgio Devtools in production
+      // More on Edgio Devtools at https://docs.edg.io/guides/devtools
+      disableEdgioDevTools: true,
       ..._preEdgioExport,
     })
   )

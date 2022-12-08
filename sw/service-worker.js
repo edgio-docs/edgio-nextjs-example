@@ -35,6 +35,6 @@ new Prefetcher({
   // Cache the images coming from any route (including
   // cross-origin) assets that contains `.link` in it
   // Read more on caching cross-origin requests at
-  // https://docs.edgio.co/docs/api/prefetch/classes/_sw_prefetcher_.prefetcher.html#cache
+  // https://docs.edg.io/docs/api/prefetch/classes/_sw_prefetcher_.prefetcher.html#cache
   .cache(/^https:\/\/(.*?)\.link\/.*/)
   .cache(/^https:\/\/(.*?)\.net\/.*/)

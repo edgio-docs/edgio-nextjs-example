@@ -20,7 +20,7 @@ const About = ({ showcases }) => {
           </a>
         </div>
         <a className="mt-5" target="_blank" href="https://app.edgio.co/deploy?repo=https://github.com/edgio-docs/edgio-nextjs-example">
-          <img height="15px" src="https://docs.edgio.co/button.svg" />
+          <img height="15px" src="https://docs.edg.io/button.svg" />
         </a>
       </div>
     </div>

@@ -5,7 +5,7 @@ const Home = () => {
         <div className="flex w-[330px] flex-col items-start justify-start rounded p-5 md:w-1/2">
           <h1 className="text-xl font-bold text-white">Next.js with Edgio</h1>
           <h3 className="mt-2 text-lg text-[#FFFFFF75]">Edgio supports all of the most powerful features of Next.js!</h3>
-          <a className="mt-auto text-[#01B18D] hover:underline" href="https://docs.edgio.co/guides/next" target="_blank">
+          <a className="mt-auto text-[#01B18D] hover:underline" href="https://docs.edg.io/guides/next" target="_blank">
             Learn More &rarr;
           </a>
         </div>
@@ -15,7 +15,7 @@ const Home = () => {
             It uses all of the latest Next.js features including image optimization, localization, and incremental static regeneration with
             stale-while-revalidate.
           </h3>
-          <a className="mt-auto text-[#01B18D] hover:underline" href="https://docs.edgio.co/guides/next_commerce" target="_blank">
+          <a className="mt-auto text-[#01B18D] hover:underline" href="https://docs.edg.io/guides/next_commerce" target="_blank">
             Learn More &rarr;
           </a>
         </div>
@@ -25,7 +25,7 @@ const Home = () => {
             While most CDNs only cache content on your asset URLs, Edgio caches content on your page URLs using EdgeJS, allowing you to control
             caching within your application code.
           </h3>
-          <a className="mt-auto text-[#01B18D] hover:underline" href="https://docs.edgio.co/guides/caching" target="_blank">
+          <a className="mt-auto text-[#01B18D] hover:underline" href="https://docs.edg.io/guides/caching" target="_blank">
             Learn More &rarr;
           </a>
         </div>
@@ -34,7 +34,7 @@ const Home = () => {
           <h3 className="mt-2 text-lg text-[#FFFFFF75]">
             Edgio allows you to speed up the user’s browsing experience by prefetching pages and API calls that they are likely to need.
           </h3>
-          <a className="mt-auto text-[#01B18D] hover:underline" href="https://docs.edgio.co/guides/prefetching" target="_blank">
+          <a className="mt-auto text-[#01B18D] hover:underline" href="https://docs.edg.io/guides/prefetching" target="_blank">
             Learn More &rarr;
           </a>
         </div>

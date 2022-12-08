@@ -12,7 +12,7 @@ if (existsSync(buildIdPath)) {
 import fetch from 'node-fetch'
 
 // Function definition referred from node_modules/@edgio/next/client.js
-// More on createNextDataURL: https://docs.edgio.co/guides/next#prefetching
+// More on createNextDataURL: https://docs.edg.io/guides/next#prefetching
 const createNextDataURL = (params) => {
   if (buildId) {
     let { href, routeParams = {} } = params

@@ -10,7 +10,7 @@ const router = new Router()
 // By pre-rendering, once the project is deployed
 // the set of links are visited to warm the cache
 // for future visits (expected to be the first view for real users)
-// More on static prerendering: https://docs.edgio.co/guides/static_prerendering
+// More on static prerendering: https://docs.edg.io/guides/static_prerendering
 router.prerender(getPrerenderRequests)
 
 // Serve the old Edgio predefined routes by the latest prefix

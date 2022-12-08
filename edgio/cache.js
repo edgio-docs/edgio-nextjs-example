@@ -3,8 +3,8 @@ export const API_CACHE_HANDLER = ({ cache, proxy }) => {
     edge: {
       maxAgeSeconds: 60 * 60,
       // Cache responses even if they contain cache-control: private header
-      // https://docs.edgio.co/guides/caching#private
-      // https://docs.edgio.co/docs/api/core/interfaces/_router_cacheoptions_.edgecacheoptions.html#forceprivatecaching
+      // https://docs.edg.io/guides/caching#private
+      // https://docs.edg.io/docs/api/core/interfaces/_router_cacheoptions_.edgecacheoptions.html#forceprivatecaching
       forcePrivateCaching: true,
     },
     browser: {
@@ -22,8 +22,8 @@ export const IMAGE_CACHE_HANDLER = ({ cache, proxy }) => {
     edge: {
       maxAgeSeconds: 60 * 60,
       // Cache responses even if they contain cache-control: private header
-      // https://docs.edgio.co/guides/caching#private
-      // https://docs.edgio.co/docs/api/core/interfaces/_router_cacheoptions_.edgecacheoptions.html#forceprivatecaching
+      // https://docs.edg.io/guides/caching#private
+      // https://docs.edg.io/docs/api/core/interfaces/_router_cacheoptions_.edgecacheoptions.html#forceprivatecaching
       forcePrivateCaching: true,
     },
     browser: {
@@ -75,7 +75,7 @@ export const NEXT_CACHE_HANDLER = ({ removeUpstreamResponseHeader, cache }) => {
       // Keep revalidating data per day, i.e. looking for content changes from the Next.js app
       // and update the response in edge
       // More on: https://web.dev/stale-while-revalidate
-      // and https://docs.edgio.co/guides/caching#achieving-100-cache-hit-rates
+      // and https://docs.edg.io/guides/caching#achieving-100-cache-hit-rates
       staleWhileRevalidateSeconds: 60 * 60 * 24,
     },
   })
