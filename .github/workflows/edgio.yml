@@ -15,4 +15,4 @@ jobs:
       - run: npm ci
       - run: npm run edgio:deploy -- --token=$EDGIO_DEPLOY_TOKEN
         env:
-          EDGIO_DEPLOY_TOKEN: ${{secrets.LAYER0_DEPLOY_TOKEN}}
+          EDGIO_DEPLOY_TOKEN: ${{secrets.EDGIO_DEPLOY_TOKEN}}
