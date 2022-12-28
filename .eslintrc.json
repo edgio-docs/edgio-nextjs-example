@@ -1,0 +1,18 @@
+{
+  "extends": ["eslint:recommended", "next"],
+  "rules": {
+    "react/jsx-no-target-blank": 1,
+    "comma-dangle": [1, "always-multiline"],
+    "no-debugger": "error",
+    "no-console": "error",
+    "react-hooks/rules-of-hooks": "error",
+    "valid-typeof": 1
+  },
+  "ignorePatterns": [
+    "sw/",
+    "edgio",
+    "/public",
+    "/node_modules",
+    "/lib"
+  ]
+}

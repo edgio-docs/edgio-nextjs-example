@@ -18,7 +18,7 @@ const relevanceItems = [
   },
 ]
 
-const Sidebar = ({}) => {
+const Sidebar = () => {
   const router = useRouter()
   const { filter = 'trending' } = router.query
   const [listingItems, setListingItems] = useState([])

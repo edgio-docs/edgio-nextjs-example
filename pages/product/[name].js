@@ -16,7 +16,7 @@ const Product = ({ data }) => {
             <img src={relativizeURL(data.images[0].url)} className="h-auto w-full max-w-[600px]" />
           </div>
           <div className="product-thumbnails mt-5 flex flex-row items-start gap-x-2 overflow-x-scroll">
-            {data.images.map((i, ind) => (
+            {data.images.map((i) => (
               <img key={i.url} loading="lazy" src={relativizeURL(i.url)} className="h-[250px] w-auto hover:bg-white" />
             ))}
           </div>
