@@ -16,12 +16,12 @@
     "react-dom": "^18.0.1"
   },
   "devDependencies": {
-    "@edgio/cli": "^6.0.3",
-    "@edgio/core": "^6.0.3",
-    "@edgio/devtools": "^6.0.3",
-    "@edgio/next": "^6.0.3",
-    "@edgio/prefetch": "^6.0.3",
-    "@edgio/react": "^6.0.3",
+    "@edgio/cli": "^6.0.5",
+    "@edgio/core": "^6.0.5",
+    "@edgio/devtools": "^6.0.5",
+    "@edgio/next": "^6.0.5",
+    "@edgio/prefetch": "^6.0.5",
+    "@edgio/react": "^6.0.5",
     "@edgio/rum": "^5.0.8",
     "@heroicons/react": "^1.0.6",
     "autoprefixer": "^10.4.7",
@@ -31,5 +31,6 @@
     "prettier": "^2.6.2",
     "prettier-plugin-tailwindcss": "^0.1.11",
     "tailwindcss": "^3.0.24"
-  }
+  },
+  "repository": "git@github.com:edgio-docs/edgio-nextjs-example.git"
 }
