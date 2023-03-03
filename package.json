@@ -16,12 +16,12 @@
     "react-dom": "^18.0.1"
   },
   "devDependencies": {
-    "@edgio/cli": "^6.0.5",
-    "@edgio/core": "^6.0.5",
-    "@edgio/devtools": "^6.0.5",
-    "@edgio/next": "^6.0.5",
-    "@edgio/prefetch": "^6.0.5",
-    "@edgio/react": "^6.0.5",
+    "@edgio/cli": "^6.1.1",
+    "@edgio/core": "^6.1.1",
+    "@edgio/devtools": "^6.1.1",
+    "@edgio/next": "^6.1.1",
+    "@edgio/prefetch": "^6.1.1",
+    "@edgio/react": "^6.1.1",
     "@edgio/rum": "^5.0.8",
     "@heroicons/react": "^1.0.6",
     "autoprefixer": "^10.4.7",
